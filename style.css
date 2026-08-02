@@ -76,7 +76,7 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(27, 54, 93, 0.7), rgba(27, 54, 93, 0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('hero-bg.jpg') no-repeat center center/cover;
     color: white;
     min-height: 350px;
     display: flex;
