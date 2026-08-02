@@ -295,3 +295,29 @@ section {
     font-weight: bold;
     font-size: 1.1rem;
 }
+/* Contact & Footer Styles */
+#contact a {
+    color: #1b365d;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+    color: #e67e22;
+}
+
+footer {
+    background: #1b365d;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+}
+
+.company-credits {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #f1c40f; /* ??????? ????????? ????? KIRAKOSYAN Company-? ????? */
+    letter-spacing: 0.5px;
+}
