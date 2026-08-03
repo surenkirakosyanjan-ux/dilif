@@ -57,7 +57,60 @@
             Գյուղն աչքի է ընկնում իր գեղեցիկ բնությամբ, մաքուր օդով և հյուրընկալ բնակիչներով։
         </p>
     </section>
+<!-- Գյուղի Օրվա Բաժին -->
+<section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
+    <h2 style="color: #1565c0;">🎉 Դիլիֆի Օրը</h2>
+    <p style="font-size: 1.1rem; margin-top: 5px; color: #333;">
+        Ամեն տարի <strong>Հուլիսի 4-ին</strong> Դիլիֆում մեծ շուքով նշվում է Գյուղի Օրը։
+    </p>
 
+    <!-- Հետհաշվարկի Վիջեթ -->
+    <div style="margin-top: 20px;">
+        <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">Մինչև հաջորդ Գյուղի Օրը մնացել է․</p>
+        <div id="countdown" style="display: flex; justify-content: center; gap: 15px; font-weight: bold; flex-wrap: wrap;">
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="days" style="font-size: 1.5rem; display: block;">0</span>Օր
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="hours" style="font-size: 1.5rem; display: block;">0</span>Ժամ
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="minutes" style="font-size: 1.5rem; display: block;">0</span>Րոպե
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="seconds" style="font-size: 1.5rem; display: block;">0</span>Վրկ
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Հետհաշվարկի Սկրիպտ -->
+<script>
+    function updateCountdown() {
+        const now = new Date();
+        let currentYear = now.getFullYear();
+        let targetDate = new Date(`July 4, ${currentYear} 00:00:00`);
+
+        if (now > targetDate) {
+            targetDate = new Date(`July 4, ${currentYear + 1} 00:00:00`);
+        }
+
+        const diff = targetDate - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / 1000 / 60) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').innerText = d;
+        document.getElementById('hours').innerText = h;
+        document.getElementById('minutes').innerText = m;
+        document.getElementById('seconds').innerText = s;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
     <!-- History Section -->
     <section id="history" class="container gray-bg">
         <h2>Պատմությունը և Մշակույթը</h2>
@@ -134,6 +187,16 @@
         <p><strong>Էլ․ հասցե:</strong> <a href="mailto:dilif.village@gmail.com">dilif.village@gmail.com</a></p>
         <p><strong>Instagram:</strong> <a href="https://instagram.com" target="_blank">@dilif_mtskhetis_raioni</a></p>
     </section>
+<!-- Գյուղի Երգը -->
+<section class="container card" style="text-align: center;">
+    <h2>🎵 Գյուղի մասին երգը</h2>
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">
+        Սոսո Հայրապետյան և Վարդան Ուրումյան - Դիլիֆ 2021
+    </p>
+    <a href="https://youtu.be/OZretlBDfL4" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);">
+        ▶ Լսել Երգը YouTube-ում
+    </a>
+</section> 
 
 <!-- Աջակցություն Բաժին -->
 <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">

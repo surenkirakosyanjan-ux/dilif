@@ -57,7 +57,60 @@
             Село славится своей красивой природой, чистым воздухом и гостеприимными жителями.
         </p>
     </section>
+<!-- Секция Дня Села -->
+<section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
+    <h2 style="color: #1565c0;">🎉 День Дилифа</h2>
+    <p style="font-size: 1.1rem; margin-top: 5px; color: #333;">
+        Каждый год <strong>4 июля</strong> в Дилифе пышно отмечается День Села.
+    </p>
 
+    <!-- Виджет отсчета -->
+    <div style="margin-top: 20px;">
+        <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">До следующего Дня Села осталось:</p>
+        <div id="countdown" style="display: flex; justify-content: center; gap: 15px; font-weight: bold; flex-wrap: wrap;">
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="days" style="font-size: 1.5rem; display: block;">0</span>Дней
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="hours" style="font-size: 1.5rem; display: block;">0</span>Часов
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="minutes" style="font-size: 1.5rem; display: block;">0</span>Мин
+            </div>
+            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                <span id="seconds" style="font-size: 1.5rem; display: block;">0</span>Сек
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Скрипт отсчета -->
+<script>
+    function updateCountdown() {
+        const now = new Date();
+        let currentYear = now.getFullYear();
+        let targetDate = new Date(`July 4, ${currentYear} 00:00:00`);
+
+        if (now > targetDate) {
+            targetDate = new Date(`July 4, ${currentYear + 1} 00:00:00`);
+        }
+
+        const diff = targetDate - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / 1000 / 60) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').innerText = d;
+        document.getElementById('hours').innerText = h;
+        document.getElementById('minutes').innerText = m;
+        document.getElementById('seconds').innerText = s;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
     <!-- History Section -->
     <section id="history" class="container gray-bg">
         <h2>История и культура</h2>
