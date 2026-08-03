@@ -207,6 +207,68 @@
         ▶️ Լսել 2-րդ Երգը YouTube-ում
     </a>
 </section>
+<!-- Հյուրերի Գիրք -->
+<section class="container card" style="text-align: left;">
+    <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 Հյուրերի Գիրք / Կարծիքներ</h3>
+    <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+        Թողե՛ք ձեր կարծիքը կամ ջերմ խոսքը գյուղի մասին 👇
+    </p>
+
+    <!-- Կարծիք գրելու ֆորմա -->
+    <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="gb-name" placeholder="Ձեր անունը..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+        <textarea id="gb-message" placeholder="Ձեր կարծիքը կամ գրառումը..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+        <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            ✉️ Ուղարկել Կարծիքը
+        </button>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <!-- Գրառումների ցանկը -->
+    <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- Այստեղ կհայտնվեն գրառումները -->
+        <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+            <strong>Սուրեն Կիրակոսյան</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">Բարի գալուստ մեր գյուղի պաշտոնական կայք։ Ուրախ ենք բոլորիդ տեսնելու համար։ ✨</p>
+        </div>
+    </div>
+</section>
+
+<!-- Գրառումների աշխատանքային սկրիպտը -->
+<script>
+    function addGuestMessage() {
+        const nameInput = document.getElementById('gb-name');
+        const msgInput = document.getElementById('gb-message');
+        const entriesContainer = document.getElementById('guestbook-entries');
+
+        if (!nameInput.value.trim() || !msgInput.value.trim()) {
+            alert('Խնդրում ենք լրացնել և՛ անունը, և՛ հաղորդագրությունը։');
+            return;
+        }
+
+        const dateNow = new Date().toLocaleDateString('hy-AM');
+
+        const newEntry = document.createElement('div');
+        newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+        newEntry.innerHTML = `
+            <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+        `;
+
+        entriesContainer.prepend(newEntry);
+
+        // Մաքրել դաշտերը
+        nameInput.value = '';
+        msgInput.value = '';
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+</script>
 <!-- Աջակցություն Բաժին -->
 <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
     <h3 style="color: #0088cc; margin-bottom: 10px;">📸 Աջակցություն</h3>
