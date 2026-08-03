@@ -205,6 +205,62 @@
         ▶️ Слушать 2-ю песню на YouTube
     </a>
 </section>
+<!-- Гостевая книга -->
+<section class="container card" style="text-align: left;">
+    <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 Гостевая книга / Отзывы</h3>
+    <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+        Оставьте свой отзыв или теплое слово о селе 👇
+    </p>
+
+    <!-- Форма для отзыва -->
+    <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="gb-name" placeholder="Ваше имя..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+        <textarea id="gb-message" placeholder="Ваш отзыв или сообщение..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+        <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            ✉️ Отправить отзыв
+        </button>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <!-- Список записей -->
+    <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+            <strong>Сурен Киракосян</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">Добро пожаловать на официальный сайт нашего села. Рады видеть всех! ✨</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function addGuestMessage() {
+        const nameInput = document.getElementById('gb-name');
+        const msgInput = document.getElementById('gb-message');
+        const entriesContainer = document.getElementById('guestbook-entries');
+
+        if (!nameInput.value.trim() || !msgInput.value.trim()) {
+            alert('Пожалуйста, заполните имя и сообщение.');
+            return;
+        }
+
+        const dateNow = new Date().toLocaleDateString('ru-RU');
+        const newEntry = document.createElement('div');
+        newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+        newEntry.innerHTML = `
+            <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+        `;
+        entriesContainer.prepend(newEntry);
+        nameInput.value = '';
+        msgInput.value = '';
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+</script>
 <!-- Поддержка -->
 <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
     <h3 style="color: #0088cc; margin-bottom: 10px;">📸 Поддержка</h3>

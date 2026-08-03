@@ -197,6 +197,62 @@
         ▶️ მოუსმინეთ მე-2 სიმღერას YouTube-ზე
     </a>
 </section>
+<!-- სტუმრების წიგნი -->
+<section class="container card" style="text-align: left;">
+    <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 სტუმრების წიგნი / შეფასებები</h3>
+    <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+        დატოვეთ თქვენი აზრი ან თბილი სიტყვა სოფლის შესახებ 👇
+    </p>
+
+    <!-- შეფასების ფორმა -->
+    <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="gb-name" placeholder="თქვენი სახელი..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+        <textarea id="gb-message" placeholder="თქვენი შეფასება ან წერილი..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+        <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            ✉️ შეფასების გაგზავნა
+        </button>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <!-- ჩანაწერების სია -->
+    <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+            <strong>სურენ კირაკოსიანი</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">მოგესალმებით ჩვენი სოფლის ოფიციალურ საიტზე. მოხარული ვართ ყველას ნახვით! ✨</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function addGuestMessage() {
+        const nameInput = document.getElementById('gb-name');
+        const msgInput = document.getElementById('gb-message');
+        const entriesContainer = document.getElementById('guestbook-entries');
+
+        if (!nameInput.value.trim() || !msgInput.value.trim()) {
+            alert('გთხოვთ შეავსოთ სახელი და შეტყობინება.');
+            return;
+        }
+
+        const dateNow = new Date().toLocaleDateString('ka-GE');
+        const newEntry = document.createElement('div');
+        newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+        newEntry.innerHTML = `
+            <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+        `;
+        entriesContainer.prepend(newEntry);
+        nameInput.value = '';
+        msgInput.value = '';
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+</script>
 <!-- მხარდაჭერა -->
 <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
     <h3 style="color: #0088cc; margin-bottom: 10px;">📸 მხარდაჭერა</h3>
