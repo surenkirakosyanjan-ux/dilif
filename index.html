@@ -211,19 +211,21 @@
         <p>&copy; 2026 Դիլիֆ Գյուղի Ռեսուրսային Կայք | Dilif Village</p>
         <p class="company-credits">Էջը պատրաստվել է <strong>KIRAKOSYAN Company</strong>-ի կողմից</p>
     </footer>
-<!-- Այցելուների Հաշվիչ -->
+<!-- Այցելուների Հաշվիչ (Առանց նկարի) -->
 <div style="text-align: center; margin: 15px 0; font-family: sans-serif;">
     <p style="margin-bottom: 5px; font-size: 0.85rem; color: #666;">👁️ Այցելություններ․</p>
-    <span id="visit-count" style="background: #1B365D; color: white; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
-        ...
+    <span id="visit-count" style="background: #1B365D; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: inline-block;">
+        0
     </span>
 </div>
 
 <script>
-    fetch('https://api.countapi.xyz/hit/surenkirakosyanjan-ux-dilif/visits')
+    fetch('https://api.counterapi.dev/v1/surenkirakosyanjan-ux-dilif/visits/up')
         .then(res => res.json())
-        .then(res => {
-            document.getElementById('visit-count').innerText = res.value;
+        .then(data => {
+            if (data && data.count) {
+                document.getElementById('visit-count').innerText = data.count;
+            }
         })
         .catch(() => {
             document.getElementById('visit-count').innerText = '1';
