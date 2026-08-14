@@ -6,6 +6,10 @@
     <title>Դիլիֆ | Դիլիֆի մասին</title>
     <link rel="stylesheet" href="style.css">
 	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 </head>
 <body>
 
@@ -209,6 +213,16 @@
         ▶️ Լսել 2-րդ Երգը YouTube-ում
     </a>
 </section>
+<section id="support" style="text-align: center; padding: 20px;">
+    <h3>Աջակցություն կայքի ստեղծմանը</h3>
+    <p>Սիրելի՛ այցելու, այս կայքը ստեղծվել է Դիլիֆ գյուղի պատմությունն ու մշակույթը պահպանելու համար։ Ձեր նվիրատվությունները կօգնեն կայքի հետագա զարգացմանը։</p>
+    <p><strong>Bank of Georgia (BOG) IBAN:</strong></p>
+    <div style="display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+        <code id="ibanText" style="font-size: 16px; font-weight: bold; color: #333;">GE27BG0000000610538015</code>
+        <button onclick="copyIban()" style="margin-left: 10px; padding: 5px 10px; cursor: pointer; background-color: #ffcc00; border: none; border-radius: 3px; font-weight: bold;">📋 Պատճենել</button>
+    </div>
+    <p id="copyMessage" style="color: green; font-size: 14px; margin-top: 5px; display: none;">Հաշվեհամարը պատճենվեց։</p>
+</section>
 <!-- Հյուրերի Գիրք -->
 <section class="container card" style="text-align: left;">
     <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 Հյուրերի Գիրք / Կարծիքներ</h3>
@@ -327,6 +341,17 @@
         document.getElementById('theme-btn').textContent = '☀️';
     }
 </script>
-
+<script>
+function copyIban() {
+    const ibanElement = document.getElementById("ibanText").innerText;
+    navigator.clipboard.writeText(ibanElement).then(() => {
+        const msg = document.getElementById("copyMessage");
+        msg.style.display = "block";
+        setTimeout(() => {
+            msg.style.display = "none";
+        }, 3000);
+    });
+}
+</script>
 </body>
 </html>
