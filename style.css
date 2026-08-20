@@ -1,4 +1,4 @@
-eneral Styles */
+/* General Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -215,7 +215,7 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* Gallery Styles - 4 ???? ???? ?????? + ???????? */
+/* Gallery Styles */
 .photo-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -239,30 +239,7 @@ footer {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive (Mobile view) */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .photo-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    } 
-/* Dark Mode ???? */
+/* Dark Mode */
 body.dark-mode {
     background-color: #121212 !important;
     color: #e0e0e0 !important;
@@ -288,7 +265,7 @@ body.dark-mode nav {
     background-color: #0d1b2a !important;
 }
 
-/* Dark Mode ?????? ??? */
+/* Dark Mode Button */
 .dark-mode-btn {
     background: transparent;
     border: 2px solid white;
@@ -304,6 +281,7 @@ body.dark-mode nav {
 .dark-mode-btn:hover {
     background: white;
     color: #1b365d;
+}
 
 /* Responsive (Mobile view) */
 @media (max-width: 768px) {
@@ -321,7 +299,6 @@ body.dark-mode nav {
         margin-right: 0 !important;
         margin-bottom: 10px;
     }
-    
 
     nav ul {
         flex-wrap: wrap;
