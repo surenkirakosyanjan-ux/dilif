@@ -51,6 +51,17 @@
         <h1>Բարի Գալուստ Դիլիֆ Գյուղ</h1>
         <p>Սամցխե-Ջավախեթի | Նինոծմինդայի շրջան</p>
     </section>
+	<section id="poll" style="padding: 20px; text-align: center; background: #f4f4f4; border-radius: 10px; margin: 20px auto; max-width: 500px;">
+    <h3>Ո՞րն է Դիլիֆի ամենագեղեցիկ եղանակը:</h3>
+    <form id="pollForm">
+        <input type="radio" name="season" value="Գարուն"> Գարուն<br>
+        <input type="radio" name="season" value="Ամառ"> Ամառ<br>
+        <input type="radio" name="season" value="Աշուն"> Աշուն<br>
+        <input type="radio" name="season" value="Ձմեռ"> Ձմեռ<br><br>
+        <button type="button" onclick="submitPoll()" style="padding: 8px 16px; background: #1b365d; color: white; border: none; border-radius: 5px; cursor: pointer;">Քվեարկել</button>
+    </form>
+    <p id="pollResult" style="margin-top: 15px; font-weight: bold;"></p>
+</section>
 	<!-- Եղանակի Վիջեթ -->
 <section class="container" style="text-align: center; margin-top: 20px;">
     <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: inline-block; max-width: 100%;">
@@ -357,6 +368,25 @@ function copyIban() {
         }, 3000);
     });
 }
+</script>
+<script>
+    function submitPoll() {
+        const form = document.getElementById('pollForm');
+        let selected = "";
+        for (const rb of form.elements['season']) {
+            if (rb.checked) {
+                selected = rb.value;
+                break;
+            }
+        }
+        
+        if (selected) {
+            document.getElementById('pollResult').innerText = "Շնորհակալություն քվեարկության համար: Դուք ընտրեցիք՝ " + selected;
+            form.style.display = 'none'; // Քվեարկելուց հետո հարցերը թաքցնում ենք
+        } else {
+            alert("Խնդրում ենք ընտրել տարբերակներից մեկը:");
+        }
+    }
 </script>
 </body>
 </html>
