@@ -51,16 +51,55 @@
         <h1>Բարի Գալուստ Դիլիֆ Գյուղ</h1>
         <p>Սամցխե-Ջավախեթի | Նինոծմինդայի շրջան</p>
     </section>
-	<section id="poll" style="padding: 20px; text-align: center; background: #f4f4f4; border-radius: 10px; margin: 20px auto; max-width: 500px;">
-    <h3>Ո՞րն է Դիլիֆի ամենագեղեցիկ եղանակը:</h3>
-    <form id="pollForm">
-        <input type="radio" name="season" value="Գարուն"> Գարուն<br>
-        <input type="radio" name="season" value="Ամառ"> Ամառ<br>
-        <input type="radio" name="season" value="Աշուն"> Աշուն<br>
-        <input type="radio" name="season" value="Ձմեռ"> Ձմեռ<br><br>
-        <button type="button" onclick="submitPoll()" style="padding: 8px 16px; background: #1b365d; color: white; border: none; border-radius: 5px; cursor: pointer;">Քվեարկել</button>
-    </form>
-    <p id="pollResult" style="margin-top: 15px; font-weight: bold;"></p>
+<section id="poll-container" style="padding: 20px; max-width: 900px; margin: 20px auto;">
+    <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px;">Դիլիֆի մասին հարցումներ</h3>
+    <div class="poll-grid">
+        <!-- Հարց 1 -->
+        <div class="poll-card">
+            <p><strong>1. Ո՞րն է Դիլիֆի ամենագեղեցիկ եղանակը:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Գարուն</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամառ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Աշուն</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ձմեռ</button>
+        </div>
+        <!-- Հարց 2 (Բոլոր 4 տարբերակներով) -->
+        <div class="poll-card">
+            <p><strong>2. Հաճա՞խ եք լինում Դիլիֆում:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ապրում եմ այնտեղ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամեն ամառ գալիս եմ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Շատ վաղուց չեմ եղել</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Հպարտ եմ, որ դիլիֆցի եմ</button>
+        </div>
+        <!-- Հարց 3 -->
+        <div class="poll-card">
+            <p><strong>3. Ո՞րն է ձեր սիրելի վայրը գյուղում:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Եկեղեցու շրջակայք</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Դպրոցի բակ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Դաշտեր ու բնություն</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Գյուղի կենտրոն</button>
+        </div>
+        <!-- Հարց 4 -->
+        <div class="poll-card">
+            <p><strong>4. Հիշו՞մ եք տեղական բարբառի բառերը:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Անպայման, հիշում եմ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Մի մասը գիտեմ</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Այստեղից եմ սովորում</button>
+        </div>
+        <!-- Հարց 5 -->
+        <div class="poll-card">
+            <p><strong>5. Քանի՞ տարեկան եք:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Մինչև 18 տարեկան</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">18 - 35 տարեկան</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">35-ից բարձր</button>
+        </div>
+        <!-- Հարց 6 -->
+        <div class="poll-card">
+            <p><strong>6. Ի՞նչն է ձեզ դուր գալիս կայքում:</strong></p>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Լուսանկարները</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Բարբառի բաժինը</button>
+            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամեն ինչն էլ լավն է</button>
+        </div>
+    </div>
 </section>
 	<!-- Եղանակի Վիջեթ -->
 <section class="container" style="text-align: center; margin-top: 20px;">

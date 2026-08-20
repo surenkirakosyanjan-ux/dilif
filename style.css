@@ -336,3 +336,50 @@ body.dark-mode nav {
         grid-template-columns: repeat(2, 1fr);
     } 
 }
+.poll-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 ???? ??? ??????? ??????????? */
+    gap: 20px;
+}
+
+.poll-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    border: 1px solid #e1e8ed;
+}
+
+.poll-card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #1b365d;
+    min-height: 40px;
+}
+
+.poll-card button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px 12px;
+    background: #f0f4f8;
+    color: #1b365d;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.poll-card button:hover {
+    background: #1b365d;
+    color: white;
+}
+
+/* ??????????? ?????? ??????? ? ??? ????????? */
+@media (max-width: 768px) {
+    .poll-grid {
+        grid-template-columns: 1fr;
+    }
+}
