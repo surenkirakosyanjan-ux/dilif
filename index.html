@@ -51,56 +51,92 @@
         <h1>Բարի Գալուստ Դիլիֆ Գյուղ</h1>
         <p>Սամցխե-Ջավախեթի | Նինոծմինդայի շրջան</p>
     </section>
-<section id="poll-container" style="padding: 20px; max-width: 900px; margin: 20px auto;">
-    <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px;">Դիլիֆի մասին հարցումներ</h3>
+<section id="poll-container" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+    <h3 style="text-align: center; color: #1b365d; margin-bottom: 25px; font-size: 24px;">Դիլիֆի մասին հարցումներ</h3>
     <div class="poll-grid">
         <!-- Հարց 1 -->
-        <div class="poll-card">
+        <div class="poll-card" id="poll-1">
             <p><strong>1. Ո՞րն է Դիլիֆի ամենագեղեցիկ եղանակը:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Գարուն</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամառ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Աշուն</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ձմեռ</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(1, 'Գարուն')">Գարուն</button>
+                <button onclick="answerPoll(1, 'Ամառ')">Ամառ</button>
+                <button onclick="answerPoll(1, 'Աշուն')">Աշուն</button>
+                <button onclick="answerPoll(1, 'Ձմեռ')">Ձմեռ</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
-        <!-- Հարց 2 (Բոլոր 4 տարբերակներով) -->
-        <div class="poll-card">
+
+        <!-- Հարց 2 -->
+        <div class="poll-card" id="poll-2">
             <p><strong>2. Հաճա՞խ եք լինում Դիլիֆում:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ապրում եմ այնտեղ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամեն ամառ գալիս եմ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Շատ վաղուց չեմ եղել</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Հպարտ եմ, որ դիլիֆցի եմ</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(2, 'Ապրում եմ այնտեղ')">Ապրում եմ այնտեղ</button>
+                <button onclick="answerPoll(2, 'Ամեն ամառ գալիս եմ')">Ամեն ամառ գալիս եմ</button>
+                <button onclick="answerPoll(2, 'Շատ վաղուց չեմ եղել')">Շատ վաղուց չեմ եղել</button>
+                <button onclick="answerPoll(2, 'Հպարտ եմ, որ դիլիֆցի եմ')">Հպարտ եմ, որ դիլիֆցի եմ</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
+
         <!-- Հարց 3 -->
-        <div class="poll-card">
+        <div class="poll-card" id="poll-3">
             <p><strong>3. Ո՞րն է ձեր սիրելի վայրը գյուղում:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Եկեղեցու շրջակայք</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Դպրոցի բակ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Դաշտեր ու բնություն</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Գյուղի կենտրոն</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(3, 'Եկեղեցու շրջակայք')">Եկեղեցու շրջակայք</button>
+                <button onclick="answerPoll(3, 'Դպրոցի բակ')">Դպրոցի բակ</button>
+                <button onclick="answerPoll(3, 'Դաշտեր ու բնություն')">Դաշտեր ու բնություն</button>
+                <button onclick="answerPoll(3, 'Գյուղի կենտրոն')">Գյուղի կենտրոն</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
+
         <!-- Հարց 4 -->
-        <div class="poll-card">
+        <div class="poll-card" id="poll-4">
             <p><strong>4. Հիշו՞մ եք տեղական բարբառի բառերը:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Անպայման, հիշում եմ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Մի մասը գիտեմ</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Այստեղից եմ սովորում</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(4, 'Անպայման, հիշում եմ')">Անպայման, հիշում եմ</button>
+                <button onclick="answerPoll(4, 'Մի մասը գիտեմ')">Մի մասը գիտեմ</button>
+                <button onclick="answerPoll(4, 'Այստեղից եմ սովորում')">Այստեղից եմ սովորում</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
+
         <!-- Հարց 5 -->
-        <div class="poll-card">
+        <div class="poll-card" id="poll-5">
             <p><strong>5. Քանի՞ տարեկան եք:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Մինչև 18 տարեկան</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">18 - 35 տարեկան</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">35-ից բարձր</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(5, 'Մինչև 18 տարեկան')">Մինչև 18 տարեկան</button>
+                <button onclick="answerPoll(5, '18 - 35 տարեկան')">18 - 35 տարեկան</button>
+                <button onclick="answerPoll(5, '35-ից բարձր')">35-ից բարձր</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
+
         <!-- Հարց 6 -->
-        <div class="poll-card">
+        <div class="poll-card" id="poll-6">
             <p><strong>6. Ի՞նչն է ձեզ դուր գալիս կայքում:</strong></p>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Լուսանկարները</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Բարբառի բաժինը</button>
-            <button onclick="alert('Շնորհակալություն քվեարկության համար!')">Ամեն ինչն էլ լավն է</button>
+            <div class="poll-options">
+                <button onclick="answerPoll(6, 'Լուսանկարները')">Լուսանկարները</button>
+                <button onclick="answerPoll(6, 'Բարբառի բաժինը')">Բարբառի բաժինը</button>
+                <button onclick="answerPoll(6, 'Ամեն ինչն էլ լավն է')">Ամեն ինչն էլ լավն է</button>
+            </div>
+            <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
         </div>
     </div>
 </section>
+
+<!-- JavaScript ֆունկցիոնալ քվեարկության համար (դիր </body>-ից առաջ) -->
+<script>
+    function answerPoll(pollId, choice) {
+        const card = document.getElementById('poll-' + pollId);
+        const options = card.querySelector('.poll-options');
+        const thankyou = card.querySelector('.poll-thankyou');
+        
+        options.style.display = 'none';
+        thankyou.style.display = 'block';
+        thankyou.innerHTML = "Շնորհակալություն քվեարկության համար!<br><span style='font-size: 12px; color: #555;'>Ձեր ընտրությունը՝ <b>" + choice + "</b></span>";
+    }
+</script>
 	<!-- Եղանակի Վիջեթ -->
 <section class="container" style="text-align: center; margin-top: 20px;">
     <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: inline-block; max-width: 100%;">
