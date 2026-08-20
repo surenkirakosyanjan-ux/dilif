@@ -1,4 +1,4 @@
-/* General Styles */
+eneral Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -304,4 +304,4 @@ body.dark-mode nav {
 .dark-mode-btn:hover {
     background: white;
     color: #1b365d;
-}
+}/* G
