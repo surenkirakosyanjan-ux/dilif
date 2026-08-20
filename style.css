@@ -304,4 +304,46 @@ body.dark-mode nav {
 .dark-mode-btn:hover {
     background: white;
     color: #1b365d;
-}/* G
+
+/* Responsive (Mobile view) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    header .logo {
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    nav ul li {
+        margin: 0 5px;
+    }
+
+    .lang-switch {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    } 
+}
