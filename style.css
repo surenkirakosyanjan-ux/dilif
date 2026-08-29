@@ -406,44 +406,52 @@ body.dark-mode nav {
 }
 .weather-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(7, 1fr); /* ????? 7 ????? ??? ????? ???? ????? */
+    gap: 15px;
+    justify-content: center;
 }
 
 .weather-card {
-    background: #ffffff;
-    padding: 15px 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
-    border: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
+    padding: 18px 10px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d1d9e6;
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .weather-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    border-color: #1b365d;
 }
 
 .weather-day {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
     color: #1b365d;
     margin-bottom: 8px;
 }
 
 .weather-icon {
-    font-size: 26px;
-    margin: 8px 0;
+    font-size: 32px;
+    margin: 10px 0;
 }
 
 .weather-temp {
-    font-size: 14px;
-    color: #333;
+    font-size: 15px;
+    color: #222;
 }
 
-/* ??????????? ?????? ??????? ??? ???????? */
-@media (max-width: 768px) {
+/* ??????????? ????? (???????? ??? 2 ??? 3 ???????, ?? ??? ?????) */
+@media (max-width: 900px) {
+    .weather-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
     .weather-grid {
         grid-template-columns: repeat(2, 1fr);
     }
