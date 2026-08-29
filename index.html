@@ -138,12 +138,55 @@
     }
 </script>
 	<!-- Եղանակի Վիջեթ -->
-<section class="container" style="text-align: center; margin-top: 20px;">
-    <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: inline-block; max-width: 100%;">
-        <h3 style="margin-bottom: 10px; color: #1b365d;">⛅ Եղանակը Դիլիֆում</h3>
-        <iframe src="https://wttr.in/Ninotsminda?lang=hy&format=%C+%t+%w+%h" frameborder="0" style="width: 100%; height: 50px; border: none;"></iframe>
+<section id="weather-section" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+    <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px; font-size: 24px;">🌦️ Եղանակը Դիլիֆում այս շաբաթ</h3>
+    <div id="weather-grid" class="weather-grid">
+        <p style="text-align: center; grid-column: 1 / -1; color: #666;">Բեռնվում է եղանակի տվյալները...</p>
     </div>
 </section>
+
+<script>
+    async function getWeatherData() {
+        try {
+            // Դիլիֆի / Նինոծմինդայի կոորդինատներով (Lat: 41.26, Lon: 43.58)
+            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.26&longitude=43.58&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+            const data = await response.json();
+            
+            const weatherGrid = document.getElementById('weather-grid');
+            weatherGrid.innerHTML = '';
+            
+            const days = ['Կիրակի', 'Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'];
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(data.daily.time[i]);
+                const dayName = i === 0 ? 'Այսօր' : days[date.getDay()];
+                const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+                const minTemp = Math.round(data.daily.temperature_2m_min[i]);
+                const code = data.daily.weathercode[i];
+                
+                // Պարզ պայմանական նշաններ՝ ըստ կոդերի
+                let weatherIcon = '☀️';
+                let weatherText = 'Արևային';
+                if (code > 0 && code < 3) { weatherIcon = '⛅'; weatherText = 'Փոփոխական'; }
+                else if (code >= 3 && code < 50) { weatherIcon = '☁️'; weatherText = 'Ամպամած'; }
+                else if (code >= 50) { weatherIcon = '🌧️'; weatherText = 'Անձրև'; }
+
+                const card = document.createElement('div');
+                card.className = 'weather-card';
+                card.innerHTML = `
+                    <div class="weather-day">${dayName}</div>
+                    <div class="weather-icon">${weatherIcon}</div>
+                    <div class="weather-temp"><b>${maxTemp}°C</b> / <span style="color: #666;">${minTemp}°C</span></div>
+                    <div class="weather-desc" style="font-size: 12px; color: #555; margin-top: 5px;">${weatherText}</div>
+                `;
+                weatherGrid.appendChild(card);
+            }
+        } catch (error) {
+            document.getElementById('weather-grid').innerHTML = '<p style="text-align: center; color: red;">Չհաջողվեց բեռնել եղանակի տվյալները:</p>';
+        }
+    }
+    getWeatherData();
+</script>
 
     <!-- About Section -->
     <section id="about" class="container">
