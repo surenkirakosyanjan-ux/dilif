@@ -446,17 +446,16 @@
 </div>
 
 <script>
-    fetch('https://api.counterapi.dev/v1/surenkirakosyanjan-ux-dilif/visits/up')
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.count) {
-                document.getElementById('visit-count').innerText = data.count;
-            }
-        })
-        .catch(() => {
-            document.getElementById('visit-count').innerText = '1';
-        });
-</script>
+        // Տեղական այցելությունների հաշվիչ (localStorage-ով)
+        let visits = localStorage.getItem('dilif_visits');
+        if (!visits) {
+            visits = 120; // Սկզբնական թիվը, որից կսկսի
+        } else {
+            visits = parseInt(visits) + 1;
+        }
+        localStorage.setItem('dilif_visits', visits);
+        document.getElementById('visit-count').innerText = visits;
+    </script>
 <script>
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
@@ -525,6 +524,34 @@ function copyIban() {
                 behavior: 'smooth'
             });
         }
+		
+		
+		// Ստուգում ենք պահպանված քվեները էջը բացելիս
+    window.addEventListener('DOMContentLoaded', () => {
+        for (let i = 1; i <= 3; i++) {
+            if (localStorage.getItem('dilif_poll_' + i)) {
+                const card = document.getElementById('poll-' + i);
+                if (card) {
+                    const options = card.querySelector('.poll-options');
+                    const thankyou = card.querySelector('.poll-thankyou');
+                    if (options) options.style.display = 'none';
+                    if (thankyou) thankyou.style.display = 'block';
+                }
+            }
+        }
+    });
+
+    // Քվեարկության ֆունկցիա
+    function answerPoll(pollNumber, option) {
+        localStorage.setItem('dilif_poll_' + pollNumber, option);
+        const card = document.getElementById('poll-' + pollNumber);
+        if (card) {
+            const options = card.querySelector('.poll-options');
+            const thankyou = card.querySelector('.poll-thankyou');
+            if (options) options.style.display = 'none';
+            if (thankyou) thankyou.style.display = 'block';
+        }
+    }
     </script>
 
     <!-- «Վերև վերադառնալու» կոճակ -->
