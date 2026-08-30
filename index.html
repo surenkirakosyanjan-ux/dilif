@@ -525,22 +525,22 @@ if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         }
 		
 		
-		// Ստուգում ենք պահպանված քվեները էջը բացելիս
-    window.addEventListener('DOMContentLoaded', () => {
-        for (let i = 1; i <= 3; i++) {
-            if (localStorage.getItem('dilif_poll_' + i)) {
-                const card = document.getElementById('poll-' + i);
-                if (card) {
-                    const options = card.querySelector('.poll-options');
-                    const thankyou = card.querySelector('.poll-thankyou');
-                    if (options) options.style.display = 'none';
-                    if (thankyou) thankyou.style.display = 'block';
-                }
+// Ստուգում ենք պահպանված քվեները էջը բացելիս
+window.addEventListener('DOMContentLoaded', () => {
+    for (let i = 1; i <= 3; i++) {
+        if (localStorage.getItem('dilif_poll_' + i)) {
+            const card = document.getElementById('poll-' + i);
+            if (card) {
+                const options = card.querySelector('.poll-options');
+                const thankyou = card.querySelector('.poll-thankyou');
+                if (options) options.style.display = 'none';
+                if (thankyou) thankyou.style.display = 'block';
             }
         }
-    });
+    }
+});
 
-    // Քվեարկության ֆունկցիա
+// Քվեարկության ֆունկցիա
 function answerPoll(pollNumber, option) {
     localStorage.setItem('dilif_poll_' + pollNumber, option);
     const card = document.getElementById('poll-' + pollNumber);
@@ -551,7 +551,6 @@ function answerPoll(pollNumber, option) {
         if (thankyou) thankyou.style.display = 'block';
     }
 }
-    </script>
 
     <!-- «Վերև վերադառնալու» կոճակ -->
     <button onclick="scrollToTop()" id="scrollTopBtn" title="Վերև վերադառնալ">↑</button>
