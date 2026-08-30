@@ -541,16 +541,16 @@ if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     });
 
     // Քվեարկության ֆունկցիա
-    function answerPoll(pollNumber, option) {
-        localStorage.setItem('dilif_poll_' + pollNumber, option);
-        const card = document.getElementById('poll-' + pollNumber);
-        if (card) {
-            const options = card.querySelector('.poll-options');
-            const thankyou = card.querySelector('.poll-thankyou');
-            if (options) options.style.display = 'none';
-            if (thankyou) thankyou.style.display = 'block';
-        }
+function answerPoll(pollNumber, option) {
+    localStorage.setItem('dilif_poll_' + pollNumber, option);
+    const card = document.getElementById('poll-' + pollNumber);
+    if (card) {
+        const options = card.querySelector('.poll-options');
+        const thankyou = card.querySelector('.poll-thankyou');
+        if (options) options.style.display = 'none';
+        if (thankyou) thankyou.style.display = 'block';
     }
+}
     </script>
 
     <!-- «Վերև վերադառնալու» կոճակ -->
