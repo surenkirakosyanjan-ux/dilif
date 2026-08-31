@@ -29,7 +29,7 @@
                 <li><a href="#contact">Կապ</a></li>
             </ul>
         </nav>
-        <!-- Language Switcher & Auth -->
+    <!-- Language Switcher & Auth -->
         <div class="lang-switch" style="display: flex; align-items: center; gap: 8px;">
             <button class="active">
                 <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
@@ -44,15 +44,23 @@
                 <img src="https://flagcdn.com/w20/us.png" alt="English" style="vertical-align: middle;">
             </a>
             <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
-            <button onclick="openAuthModal()" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px;">Մուտք</button>
+            
+            <!-- Այստեղ փոխվել է կոճակի տեղը, որպեսզի հայտնվի օգտանունը կամ դուրս գալու կոճակը -->
+            <div id="userAuthContainer" style="display: inline-block; margin-left: 10px;">
+                <button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>
+            </div>
         </div>
     </header>
 
-    <!-- Մուտք / Գրանցման պատուհան -->
+   <!-- Մուտք / Գրանցման պատուհան -->
     <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
         <div style="background: white; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; text-align: center;">
             <span onclick="closeAuthModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888;">&times;</span>
             <h3 id="modalTitle" style="margin-bottom: 20px; color: #333;">Մուտք գործել</h3>
+            
+            <!-- Նոր դաշտ Username-ի համար, որը երևում է միայն գրանցման ժամանակ -->
+            <input type="text" id="authUsername" placeholder="Օգտանուն (Username)" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; display: none;">
+            
             <input type="email" id="authEmail" placeholder="Էլ. հասցե" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
             <input type="password" id="authPassword" placeholder="Գաղտնաբառ" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
             <button id="authSubmitBtn" style="width: 100%; background: #2575fc; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>
@@ -64,7 +72,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script>
+   <script>
         const firebaseConfig = {
             apiKey: "AIzaSyC_K1S7HNliPo9GvQt2IB7m74ApxGwCDHg",
             authDomain: "dilif-village.firebaseapp.com",
@@ -87,17 +95,58 @@
         let isLogin = true;
         function toggleAuthMode() {
             isLogin = !isLogin;
+            const usernameInput = document.getElementById('authUsername');
             document.getElementById('modalTitle').innerText = isLogin ? 'Մուտք գործել' : 'Գրանցվել';
             document.getElementById('authSubmitBtn').innerText = isLogin ? 'Մուտք' : 'Գրանցվել';
+            usernameInput.style.display = isLogin ? 'none' : 'block';
+        }
+
+        // Հետևում ենք օգտատիրոջ մուտքի կարգավիճակին
+        auth.onAuthStateChanged((user) => {
+            const container = document.getElementById('userAuthContainer');
+            if (user) {
+                // Եթե մուտք է գործել, վերցնում ենք անունը (Firestore-ից կամ Profile-ից)
+                db.collection('users').doc(user.uid).get().then((doc) => {
+                    let username = "Օգտատեր";
+                    if (doc.exists && doc.data().username) {
+                        username = doc.data().username;
+                    } else if (user.displayName) {
+                        username = user.displayName;
+                    } else {
+                        username = user.email.split('@')[0];
+                    }
+
+                    container.innerHTML = `
+                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${username}</span>
+                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">Դուրս գալ</button>
+                    `;
+                }).catch(() => {
+                    container.innerHTML = `
+                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${user.email.split('@')[0]}</span>
+                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">Դուրս գալ</button>
+                    `;
+                });
+            } else {
+                container.innerHTML = `<button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>`;
+            }
+        });
+
+        function logoutUser() {
+            auth.signOut().then(() => {
+                alert('Դուք դուրս եք եկել հաշվից');
+            });
         }
 
         document.getElementById('authSubmitBtn').addEventListener('click', function() {
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
-            if (!email || !password) {
+            const username = document.getElementById('authUsername').value;
+
+            if (!email || !password || (!isLogin && !username)) {
                 alert('Խնդրում ենք լրացնել բոլոր դաշտերը');
                 return;
             }
+
             if (isLogin) {
                 auth.signInWithEmailAndPassword(email, password)
                     .then(() => {
@@ -109,6 +158,14 @@
                     });
             } else {
                 auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        // Պահպանում ենք օգտանունը Firestore-ում
+                        return db.collection('users').doc(user.uid).set({
+                            username: username,
+                            email: email
+                        });
+                    })
                     .then(() => {
                         alert('Հաշիվը հաջողությամբ ստեղծվեց!');
                         closeAuthModal();
