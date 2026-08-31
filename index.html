@@ -46,6 +46,20 @@
     <img src="https://flagcdn.com/w20/us.png" alt="English" style="vertical-align: middle;">
 </a>
     <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
+	<button onclick="openAuthModal()" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px;">Մուտք</button>
+</div>
+</div>
+
+<!-- Մուտք / Գրանցման պատուհան -->
+<div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; text-align: center;">
+        <span onclick="closeAuthModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888;">&times;</span>
+        <h3 id="modalTitle" style="margin-bottom: 20px; color: #333;">Մուտք գործել</h3>
+        <input type="email" id="authEmail" placeholder="Էլ. հասցե" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px;">
+        <input type="password" id="authPassword" placeholder="Գաղտնաբառ" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px;">
+        <button id="authSubmitBtn" style="width: 100%; background: #2575fc; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>
+        <p style="font-size: 13px; color: #666; cursor: pointer; margin-top: 15px;" onclick="toggleAuthMode()">Չունե՞ք հաշիվ: Գրանցվեք</p>
+    </div>
 </div>
 <!-- Firebase SDK-ներ -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
