@@ -676,6 +676,28 @@ function answerPoll(pollNumber, option) {
         if (thankyou) thankyou.style.display = 'block';
     }
 }
+<script>
+    function openAuthModal() {
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+    }
+
+    function closeAuthModal() {
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    let isLogin = true;
+    function toggleAuthMode() {
+        isLogin = !isLogin;
+        document.getElementById('modalTitle').innerText = isLogin ? 'Մուտք գործել' : 'Գրանցվել';
+        document.getElementById('authSubmitBtn').innerText = isLogin ? 'Մուտք' : 'Գրանցվել';
+    }
+</script>
 
     <!-- «Վերև վերադառնալու» կոճակ -->
     <button onclick="scrollToTop()" id="scrollTopBtn" title="Վերև վերադառնալ">↑</button>
