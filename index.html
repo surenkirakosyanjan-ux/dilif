@@ -67,7 +67,7 @@
     <script>
         // Ձեր Firebase կոնֆիգուրացիան
         const firebaseConfig = {
-            apiKey: "AIzaSyC_K1S7HNliPo9GvQt2IB7m74ApxGwCDHg",
+            apiKey: "AIzaSyC_K1S7HNLiPo9GvQt2IB7m74ApxGwCDHg",
             authDomain: "dilif-village.firebaseapp.com",
             projectId: "dilif-village",
             storageBucket: "dilif-village.appspot.com",
@@ -81,11 +81,15 @@
 
         function openAuthModal() {
             const modal = document.getElementById('authModal');
-            if (modal) modal.style.display = 'flex';
+            if (modal) {
+                modal.style.display = 'flex';
+            }
         }
         function closeAuthModal() {
             const modal = document.getElementById('authModal');
-            if (modal) modal.style.display = 'none';
+            if (modal) {
+                modal.style.display = 'none';
+            }
         }
         let isLogin = true;
         function toggleAuthMode() {
@@ -93,7 +97,7 @@
             document.getElementById('modalTitle').innerText = isLogin ? 'Մուտք գործել' : 'Գրանցվել';
             document.getElementById('authSubmitBtn').innerText = isLogin ? 'Մուտք' : 'Գրանցվել';
         }
-
+        
         // Մուտքի և Գրանցման կոճակի սեղմման տրամաբանությունը
         document.getElementById('authSubmitBtn').addEventListener('click', function() {
             const email = document.getElementById('authEmail').value;
@@ -130,10 +134,10 @@
         <p>Սամցխե-Ջավախեթի | Նինոծմինդայի շրջան</p>
     </section>
 
-    <!-- Poll Section -->
     <section id="poll-container" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
         <h3 style="text-align: center; color: #1b365d; margin-bottom: 25px; font-size: 24px;">Դիլիֆի մասին հարցումներ</h3>
         <div class="poll-grid">
+            <!-- Հարց 1 -->
             <div class="poll-card" id="poll-1">
                 <p><strong>1. Ո՞րն է Դիլիֆի ամենագեղեցիկ եղանակը:</strong></p>
                 <div class="poll-options">
@@ -144,6 +148,7 @@
                 </div>
                 <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
             </div>
+            <!-- Հարց 2 -->
             <div class="poll-card" id="poll-2">
                 <p><strong>2. Հաճա՞խ եք լինում Դիլիֆում:</strong></p>
                 <div class="poll-options">
@@ -154,6 +159,7 @@
                 </div>
                 <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
             </div>
+            <!-- Հարց 3 -->
             <div class="poll-card" id="poll-3">
                 <p><strong>3. Ո՞րն է ձեր սիրելի վայրը գյուղում:</strong></p>
                 <div class="poll-options">
@@ -161,6 +167,36 @@
                     <button onclick="answerPoll(3, 'Դպրոցի բակ')">Դպրոցի բակ</button>
                     <button onclick="answerPoll(3, 'Դաշտեր ու բնություն')">Դաշտեր ու բնություն</button>
                     <button onclick="answerPoll(3, 'Գյուղի կենտրոն')">Գյուղի կենտրոն</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
+            </div>
+            <!-- Հարց 4 -->
+            <div class="poll-card" id="poll-4">
+                <p><strong>4. Հիշו՞մ եք տեղական բարբառի բառերը:</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(4, 'Անպայման, հիշում եմ')">Անպայման, հիշում եմ</button>
+                    <button onclick="answerPoll(4, 'Մի մասը գիտեմ')">Մի մասը գիտեմ</button>
+                    <button onclick="answerPoll(4, 'Այստեղից եմ սովորում')">Այստեղից եմ սովորում</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
+            </div>
+            <!-- Հարց 5 -->
+            <div class="poll-card" id="poll-5">
+                <p><strong>5. Քանի՞ տարեկան եք:</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(5, 'Մինչև 18 տարեկան')">Մինչև 18 տարեկան</button>
+                    <button onclick="answerPoll(5, '18 - 35 տարեկան')">18 - 35 տարեկան</button>
+                    <button onclick="answerPoll(5, '35-ից բարձր')">35-ից բարձր</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
+            </div>
+            <!-- Հարց 6 -->
+            <div class="poll-card" id="poll-6">
+                <p><strong>6. Ի՞նչն է ձեզ դուր գալիս կայքում:</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(6, 'Լուսանկարները')">Լուսանկարները</button>
+                    <button onclick="answerPoll(6, 'Բարբառի բաժինը')">Բարբառի բաժինը</button>
+                    <button onclick="answerPoll(6, 'Ամեն ինչն էլ լավն է')">Ամեն ինչն էլ լավն է</button>
                 </div>
                 <div class="poll-thankyou" style="display: none;">Շնորհակալություն քվեարկության համար:</div>
             </div>
@@ -179,8 +215,10 @@
             try {
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.26&longitude=43.58&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
                 const data = await response.json();
+                
                 const weatherGrid = document.getElementById('weather-grid');
                 weatherGrid.innerHTML = '';
+                
                 const days = ['Կիրակի', 'Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'];
                 
                 for (let i = 0; i < 7; i++) {
@@ -195,7 +233,6 @@
                     if (code > 0 && code < 3) { weatherIcon = '⛅'; weatherText = 'Փոփոխական'; }
                     else if (code >= 3 && code < 50) { weatherIcon = '☁️'; weatherText = 'Ամպամած'; }
                     else if (code >= 50) { weatherIcon = '🌧️'; weatherText = 'Անձրև'; }
-
                     const card = document.createElement('div');
                     card.className = 'weather-card';
                     card.innerHTML = `
@@ -218,7 +255,8 @@
         <h2>Գյուղի Մասին</h2>
         <p>
             <strong>Դիլիֆը (վրաց.՝ დილიფი)</strong> գյուղ է Վրաստանի Սամցխե-Ջավախեթի մարզի Նինոծմինդայի մունիցիպալիտետում։ 
-            Այն տեղակայված է Ջավախքի բարձրավանդակում, ծովի մակարդակից բարձր է ավելի քան 1900 մետր։
+            Այն տեղակայված է Ջավախքի բարձրավանդակում, ծովի մակարդակից բարձր է ավելի քան 1900 մետր։ 
+            Գյուղն աչքի է ընկնում իր գեղեցիկ բնությամբ, մաքուր օդով և հյուրընկալ բնակիչներով։
         </p>
     </section>
 
@@ -268,14 +306,55 @@
         updateCountdown();
     </script>
 
+    <!-- History Section -->
+    <section id="history" class="container gray-bg">
+        <h2>Պատմությունը և Մշակույթը</h2>
+        <p>
+            Գյուղն ունի հարուստ պատմություն և մշակութային ժառանգություն։ 
+            Բնակչությունը հիմնականում զբաղվում է անասնապահությամբ, հողագործությամբ (կարտոֆիլաբուծությամբ) և մեղվաբուծությամբ։ 
+            Դիլիֆում սերնդեսերունդ պահպանվել են Ջավախքի ավանդական տոներն ու սովորույթները։
+        </p>
+    </section>
+
     <!-- Sightseeing Section -->
     <section id="sightseeing" class="container">
         <h2>Տեսարժան Վայրեր</h2>
         <div class="cards">
+            <!-- Սուրբ Վարդանանց Եկեղեցի -->
             <div class="card">
                 <img src="church.jpg" alt="Սուրբ Վարդանանց եկեղեցի" style="width:100%; border-radius:6px; margin-bottom:10px;">
                 <h3>Սուրբ Վարդանանց Եկեղեցի</h3>
-                <p>Դիլիֆ գյուղի Սուրբ Վարդանանց եկեղեցին կառուցվել է 1866 թվականին:</p>
+                <p>Դիլիֆ գյուղի Սուրբ Վարդանանց եկեղեցին կառուցվել է 1866 թվականին: Սակայն տարիների ընթացքում քանդվել և վերածվել է պահեստի, որտեղ պահվել է տարբեր տեսակի հացահատիկ:</p>
+                <p style="margin-top: 8px;">Եկեղեցու մուտքի պատին փորագրված է. <em>«1866 Սուրբ Վարդանանց Եկեղեցի. գյուղ Դիլիֆ»</em>: 1847-1885 թվականների մատյաններում, մինչև 1870 թվականը, գյուղում գործող եկեղեցին հիշատակվում է Սուրբ Գևորգ անվամբ, որից հետո` Սուրբ Վարդան: 1880-ական թվականներին արդեն Սուրբ Վարդան անվամբ եկեղեցին հիշատակվում է՝ որպես քարաշեն, փայտածածկ կառույց:</p>
+                <p style="margin-top: 8px;">Եկեղեցին ունեցել է նաև իր ծխական դպրոցը, որի մասին տեղեկություններ են հաղորդում սկսած 19-րդ դարի 60-ական թվականներից: Համաձայն դրանց` այն բացվել է տեղի հասարակության միջոցներով 1864 թվականին և տվյալ պահին ունեցել է 20 սովորող:</p>
+                <p style="margin-top: 8px;">2017 թվականին, նախկին Դիլիֆաբնակ բարերարների նախաձեռնությամբ իրականացվեցին եկեղեցու վերանորոգման աշխատանքները: Վերանորոգվեց եկեղեցու տանիքը, վերականգնվեց գմբեթը և կատարվեցին ներքին հարդարման աշխատանքները:</p>
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ 2018 թվականի հոկտեմբերի 12-ին Վիրահայոց թեմի առաջնորդ Գերաշնորհ Տեր Վազգեն եպիսկոպոս Միրզախանյանի ձեռամբ վերաօծվեց Սրբոց Վարդան եկեղեցին: Տեր Տիգրան քահանա ՄԽԻԹԱՐՅԱՆԻ ու Տեր Գևորգ քահանա Ասատրյանի ընկերակցությամբ կատարվեց եկեղեցու դռնբացեքի արարողությունը:</p>
+            </div>
+            <div class="card">
+                <h3>Ջավախքի Բնությունը</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0;">
+                    <img src="nature1.jpg" alt="Բնություն 1" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature2.jpg" alt="Բնություն 2" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature3.jpg" alt="Բնություն 3" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature4.jpg" alt="Բնություն 4" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                </div>
+                <p>Շրջապատող լեռներն ու ալպիական մարգագետինները, որոնք յուրահատուկ տեսարան են բացում տարվա ցանկացած եղանակին:</p>
+                <p style="margin-top: 10px;">🏞️ <strong>Բնության յուրահատկությունը․</strong> Ջավախքի բարձրադիր լեռներն ու ալպիական մարգագետիններն ամռանը զով են ու կանաչապատ, իսկ ձմռանը ծածկվում են հաստ ձյան շերտով՝ ստեղծելով հեքիաթային տեսարաններ։</p>
+                <p style="margin-top: 8px;">🌾 <strong>Տեղական բնությունը․</strong> Գյուղի շրջակայքը հարուստ է մաքուր լեռնային օդով, բուժիչ խոտաբույսերով և բնական վճիտ աղբյուրներով, որոնք կյանք են տալիս տեղի գյուղատնտեսությանն ու անասնապահությանը։</p>
+            </div>
+            <div class="card">
+                <img src="fountain.jpg" alt="Աղբյուրներ և Հուշարձաններ" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>Աղբյուրներ ու Հուշարձաններ</h3>
+                <p>Գյուղի սառնորակ աղբյուրները և տեղի հերոսներին ու պատմությանը նվիրված հուշարձանները:</p>
+                <p style="margin-top: 10px;">💧 <strong>Սառնորակ աղբյուրներ․</strong> Դիլիֆը հայտնի է իր պաղ ու վճիտ աղբյուրներով, որոնք դարեր ի վեր եղել են գյուղացիների հավաքատեղին ու զովության աղբյուրը ամռան տապին։</p>
+                <p style="margin-top: 8px;">🎖️ <strong>Հիշատակ ու հարգանք․</strong> Գյուղում կանգնեցված հուշարձանները խորհրդանշում են դիլիֆցիների հերոսական անցյալը, հայրենասիրությունն ու հարգանքը՝ հայրենիքի համար իրենց կյանքը տված նախնիների հիշատակի հանդեպ։</p>
+            </div>
+            <!-- Դպրոցի Քարտ -->
+            <div class="card">
+                <img src="school.jpg" alt="Դիլիֆի հանրային դպրոց" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>Դիլիֆի Հանրային Դպրոց</h3>
+                <p>Դպրոցը գյուղի կարևորագույն կրթական և մշակութային կենտրոնն է, որտեղ սովորում են Դիլիֆի երեխաները։</p>
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #555;">🏆 <strong>Հպարտության էջ․</strong> Դպրոցի աշակերտ <strong>Սերգեյ Ավետիսյանը</strong> (9-րդ դասարան) հաղթել է «Էտալոն» ինտելեկտուալ մրցույթում և ներկայացրել Նինոծմինդայի մունիցիպալիտետը եզրափակիչ փուլում։</p>
             </div>
         </div>
     </section>
@@ -283,12 +362,123 @@
     <!-- Contact Section -->
     <section id="contact" class="container gray-bg" style="text-align: center;">
         <h2>Տեղադրություն և Կապ</h2>
-        <p><strong>Մարզ:</strong> Սամցխե-Ջավախեթի</p>
+        <p><strong>Մարզ:</strong> Սամցխե-Ջավախեթի (Samtskhe-Javakheti)</p>
+        <p><strong>Շրջան:</strong> Նինոծմինդա (Ninotsminda)</p>
         <p><strong>Գյուղ:</strong> Դիլիֆ (Dilif)</p>
+        
         <div class="social-icons" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://instagram.com/_kirakosyan_2011" target="_blank" style="background: #E1306C; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">Instagram</a>
-            <a href="https://t.me/dilifvillage" target="_blank" style="background: #0088cc; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">Telegram</a>
+            <a href="https://instagram.com/ifheshe" target="_blank" style="background: #E1306C; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://t.me/dilifvillage" target="_blank" style="background: #0088cc; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:dilif.village@gmail.com" style="background: #555555; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-envelope"></i> Email
+            </a>
         </div>
+    </section>
+
+    <div style="max-width: 800px; margin: 30px auto; padding: 10px; background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+        <h3 style="text-align: center; margin-bottom: 15px; color: #333; font-family: sans-serif;">📍 Գյուղի քարտեզը 3D տեսքով</h3>
+        <iframe width="100%" 
+            height="380" 
+            style="border:0; border-radius: 12px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=41.27456,43.46906&t=k&z=16&output=embed">
+        </iframe>
+    </div>
+
+    <!-- Գյուղի Երգը -->
+    <section class="container card" style="text-align: center;">
+        <h2>🎵 Գյուղի մասին երգը</h2>
+        <p style="margin-bottom: 15px; font-weight: bold; color: #555;">
+            Սոսո Հայրապետյան և Վարդան Ուրումյան - Դիլիֆ 2021
+        </p>
+        <a href="https://youtu.be/OZretlBDfL4" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);">
+            ▶ Լսել Երգը YouTube-ում
+        </a>
+    </section> 
+
+    <!-- Գյուղի 2-րդ երգը -->
+    <section class="container card" style="text-align: center;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">🎵 Գյուղի 2-րդ երգը</h3>
+        <p style="font-size: 16px; margin-bottom: 15px;">
+            Դիլիֆ գյուղին նվիրված երկրորդ երգը
+        </p>
+        <a href="https://youtu.be/-nwbG3ntVsg" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            ▶️ Լսել 2-րդ Երգը YouTube-ում
+        </a>
+    </section>
+
+    <section id="support" style="text-align: center; padding: 20px;">
+        <h3>Աջակցություն կայքի ստեղծմանը</h3>
+        <p>Սիրելի՛ այցելու, այս կայքը ստեղծվել է Դիլիֆ գյուղի պատմությունն ու մշակույթը պահպանելու համար։ Ձեր նվիրատվությունները կօգնեն կայքի հետագա զարգացմանը։</p>
+        <p><strong>Bank of Georgia (BOG) IBAN:</strong></p>
+        <div style="display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+            <code id="ibanText" style="font-size: 16px; font-weight: bold; color: #333;">GE27BG0000000610538015</code>
+            <button onclick="copyIban()" style="margin-left: 10px; padding: 5px 10px; cursor: pointer; background-color: #ffcc00; border: none; border-radius: 3px; font-weight: bold;">📋 Պատճենել</button>
+        </div>
+        <p id="copyMessage" style="color: green; font-size: 14px; margin-top: 5px; display: none;">Հաշվեհամարը պատճենվեց։</p>
+    </section>
+
+    <!-- Հյուրերի Գիրք -->
+    <section class="container card" style="text-align: left;">
+        <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 Հյուրերի Գիրք / Կարծիքներ</h3>
+        <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+            Թողե՛ք ձեր կարծիքը կամ ջերմ խոսքը գյուղի մասին 👇
+        </p>
+        <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="gb-name" placeholder="Ձեր անունը..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+            <textarea id="gb-message" placeholder="Ձեր կարծիքը կամ գրառումը..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+            <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                ✉️ Ուղարկել Կարծիքը
+            </button>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+                <strong>Սուրեն Կիրակոսյան</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">Բարի գալուստ մեր գյուղի պաշտոնական կայք։ Ուրախ ենք բոլորիդ տեսնելու համար։ ✨</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        function addGuestMessage() {
+            const nameInput = document.getElementById('gb-name');
+            const msgInput = document.getElementById('gb-message');
+            const entriesContainer = document.getElementById('guestbook-entries');
+            if (!nameInput.value.trim() || !msgInput.value.trim()) {
+                alert('Խնդրում ենք լրացնել և՛ անունը, և՛ հաղորդագրությունը։');
+                return;
+            }
+            const dateNow = new Date().toLocaleDateString('hy-AM');
+            const newEntry = document.createElement('div');
+            newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+            newEntry.innerHTML = `
+                <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+            `;
+            entriesContainer.prepend(newEntry);
+            nameInput.value = '';
+            msgInput.value = '';
+        }
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+
+    <!-- Աջակցություն Բաժին -->
+    <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">📸 Աջակցություն</h3>
+        <p style="font-size: 16px; line-height: 1.5;">
+            Եթե ունեք գյուղի գեղեցիկ նկարներ, ուղարկեք դրանք մեր Telegram-ին՝ 
+            <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>:
+        </p>
     </section>
 
     <!-- Footer -->
@@ -300,14 +490,25 @@
         </p>
     </footer>
 
-    <!-- Այցելուների Հաշիվիչ և Ընդհանուր Սկրիպտներ -->
+    <!-- Այցելուների Հաշվիչ -->
+    <div style="text-align: center; margin: 15px 0; font-family: sans-serif;">
+        <p style="margin-bottom: 5px; font-size: 0.85rem; color: #666;">👁️ Այցելություններ․</p>
+        <span id="visit-count" style="background: #1B365D; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: inline-block;">
+            0
+        </span>
+    </div>
     <script>
         let visits = localStorage.getItem('dilif_visits');
-        if (!visits) { visits = 120; } else { visits = parseInt(visits) + 1; }
+        if (!visits) {
+            visits = 120;
+        } else {
+            visits = parseInt(visits) + 1;
+        }
         localStorage.setItem('dilif_visits', visits);
-        const visitCountEl = document.getElementById('visit-count');
-        if (visitCountEl) visitCountEl.innerText = visits;
+        document.getElementById('visit-count').innerText = visits;
+    </script>
 
+    <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('theme-btn');
@@ -321,12 +522,22 @@
         }
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            const btn = document.getElementById('theme-btn');
-            if (btn) btn.textContent = '☀️';
+            document.getElementById('theme-btn').textContent = '☀️';
+        }
+
+        function copyIban() {
+            const ibanElement = document.getElementById("ibanText").innerText;
+            navigator.clipboard.writeText(ibanElement).then(() => {
+                const msg = document.getElementById("copyMessage");
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 3000);
+            });
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 6; i++) {
                 if (localStorage.getItem('dilif_poll_' + i)) {
                     const card = document.getElementById('poll-' + i);
                     if (card) {
@@ -350,7 +561,9 @@
             }
         }
 
-        window.onscroll = function() { scrollFunction(); };
+        window.onscroll = function() { 
+            scrollFunction(); 
+        };
         function scrollFunction() {
             const btn = document.getElementById("scrollTopBtn");
             if (btn) {
@@ -362,11 +575,14 @@
             }
         }
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 
     <!-- «Վերև վերադառնալու» կոճակ -->
-    <button onclick="scrollToTop()" id="scrollTopBtn" title="Վերև վերադառնալ" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99; font-size: 18px; padding: 10px 15px; background: #2575fc; color: white; border: none; border-radius: 50%; cursor: pointer;">↑</button>
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Վերև վերադառնալ" style="display:none; position:fixed; bottom:20px; right:20px; z-index:99; background:#2575fc; color:white; border:none; padding:10px 15px; border-radius:50%; cursor:pointer; font-size:18px;">↑</button>
 </body>
 </html>
