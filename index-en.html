@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilif | About Dilif</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/jpeg" href="fav.jpg">
+    <link rel="apple-touch-icon" href="fav.jpg">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="fav.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="fav.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="fav.jpg">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo" style="display: inline-block; vertical-align: middle; margin-right: 20px;">
+            <img src="favicon.png" alt="Dilif Logo" style="height: 45px; width: auto; display: block;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#sightseeing">Sightseeing</a></li>
+                <li><a href="barbar.html">Dialect</a></li>
+                <li><a href="gallery.html">Photos</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Language Switcher -->
+        <div class="lang-switch">
+            <a href="index.html">
+                <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
+            </a> | 
+            <a href="index-ka.html">
+                <img src="https://flagcdn.com/w20/ge.png" alt="Georgia" style="vertical-align: middle;">
+            </a> | 
+            <a href="index-ru.html">
+                <img src="https://flagcdn.com/w20/ru.png" alt="Russia" style="vertical-align: middle;">
+            </a> |
+            <button class="active" style="background: none; border: none; cursor: pointer;">
+                <img src="https://flagcdn.com/w20/gb.png" alt="English" style="vertical-align: middle;">
+            </button>
+            <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Welcome to Dilif Village</h1>
+        <p>Samtskhe-Javakheti | Ninotsminda Region</p>
+    </section>
+
+    <!-- Poll Section -->
+    <section id="poll-container" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+        <h3 style="text-align: center; color: #1b365d; margin-bottom: 25px; font-size: 24px;">Polls About Dilif</h3>
+        <div class="poll-grid">
+            <!-- Question 1 -->
+            <div class="poll-card" id="poll-1">
+                <p><strong>1. What is the most beautiful season in Dilif?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(1, 'Spring')">Spring</button>
+                    <button onclick="answerPoll(1, 'Summer')">Summer</button>
+                    <button onclick="answerPoll(1, 'Autumn')">Autumn</button>
+                    <button onclick="answerPoll(1, 'Winter')">Winter</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="poll-card" id="poll-2">
+                <p><strong>2. How often do you visit Dilif?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(2, 'I live there')">I live there</button>
+                    <button onclick="answerPoll(2, 'I come every summer')">I come every summer</button>
+                    <button onclick="answerPoll(2, 'I have not been for a long time')">I haven't been for a long time</button>
+                    <button onclick="answerPoll(2, 'I am proud to be from Dilif')">I am proud to be from Dilif</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="poll-card" id="poll-3">
+                <p><strong>3. What is your favorite place in the village?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(3, 'Around the church')">Around the church</button>
+                    <button onclick="answerPoll(3, 'School yard')">School yard</button>
+                    <button onclick="answerPoll(3, 'Fields and nature')">Fields and nature</button>
+                    <button onclick="answerPoll(3, 'Village center')">Village center</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="poll-card" id="poll-4">
+                <p><strong>4. Do you remember the local dialect words?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(4, 'Definitely, I remember')">Definitely, I remember</button>
+                    <button onclick="answerPoll(4, 'I know some of them')">I know some of them</button>
+                    <button onclick="answerPoll(4, 'I am learning from here')">I am learning from here</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="poll-card" id="poll-5">
+                <p><strong>5. How old are you?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(5, 'Under 18')">Under 18</button>
+                    <button onclick="answerPoll(5, '18 - 35 years old')">18 - 35 years old</button>
+                    <button onclick="answerPoll(5, 'Over 35')">Over 35</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="poll-card" id="poll-6">
+                <p><strong>6. What do you like about the website?</strong></p>
+                <div class="poll-options">
+                    <button onclick="answerPoll(6, 'The photos')">The photos</button>
+                    <button onclick="answerPoll(6, 'The dialect section')">The dialect section</button>
+                    <button onclick="answerPoll(6, 'Everything is great')">Everything is great</button>
+                </div>
+                <div class="poll-thankyou" style="display: none;">Thank you for voting!</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function answerPoll(pollId, choice) {
+            const card = document.getElementById('poll-' + pollId);
+            const options = card.querySelector('.poll-options');
+            const thankyou = card.querySelector('.poll-thankyou');
+            
+            options.style.display = 'none';
+            thankyou.style.display = 'block';
+            thankyou.innerHTML = "Thank you for voting!<br><span style='font-size: 12px; color: #555;'>Your choice: <b>" + choice + "</b></span>";
+        }
+    </script>
+
+    <!-- Weather Widget -->
+    <section id="weather-section" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+        <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px; font-size: 24px;">🌦️ Weather in Dilif This Week</h3>
+        <div id="weather-grid" class="weather-grid">
+            <p style="text-align: center; grid-column: 1 / -1; color: #666;">Loading weather data...</p>
+        </div>
+    </section>
+
+    <script>
+        async function getWeatherData() {
+            try {
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.26&longitude=43.58&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+                const data = await response.json();
+                
+                const weatherGrid = document.getElementById('weather-grid');
+                weatherGrid.innerHTML = '';
+                
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date(data.daily.time[i]);
+                    const dayName = i === 0 ? 'Today' : days[date.getDay()];
+                    const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+                    const minTemp = Math.round(data.daily.temperature_2m_min[i]);
+                    const code = data.daily.weathercode[i];
+                    
+                    let weatherIcon = '☀️';
+                    let weatherText = 'Sunny';
+                    if (code > 0 && code < 3) { weatherIcon = '⛅'; weatherText = 'Partly Cloudy'; }
+                    else if (code >= 3 && code < 50) { weatherIcon = '☁️'; weatherText = 'Cloudy'; }
+                    else if (code >= 50) { weatherIcon = '🌧️'; weatherText = 'Rain'; }
+
+                    const card = document.createElement('div');
+                    card.className = 'weather-card';
+                    card.innerHTML = `
+                        <div class="weather-day">${dayName}</div>
+                        <div class="weather-icon">${weatherIcon}</div>
+                        <div class="weather-temp"><b>${maxTemp}°C</b> / <span style="color: #666;">${minTemp}°C</span></div>
+                        <div class="weather-desc" style="font-size: 12px; color: #555; margin-top: 5px;">${weatherText}</div>
+                    `;
+                    weatherGrid.appendChild(card);
+                }
+            } catch (error) {
+                document.getElementById('weather-grid').innerHTML = '<p style="text-align: center; color: red;">Failed to load weather data.</p>';
+            }
+        }
+        getWeatherData();
+    </script>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2>About the Village</h2>
+        <p>
+            <strong>Dilif (Georgian: დილიფი)</strong> is a village in the Ninotsminda Municipality of the Samtskhe-Javakheti region of Georgia. 
+            It is located on the Javakheti plateau, at an altitude of more than 1,900 meters above sea level. 
+            The village stands out with its beautiful nature, clean air, and hospitable residents.
+        </p>
+    </section>
+
+    <!-- Village Day Section -->
+    <section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
+        <h2 style="color: #1565c0;">🎉 Dilif Village Day</h2>
+        <p style="font-size: 1.1rem; margin-top: 5px; color: #333;">
+            Every year on <strong>July 4th</strong>, Village Day is celebrated with great splendor in Dilif.
+        </p>
+
+        <!-- Countdown Widget -->
+        <div style="margin-top: 20px;">
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">Time left until the next Village Day:</p>
+            <div id="countdown" style="display: flex; justify-content: center; gap: 15px; font-weight: bold; flex-wrap: wrap;">
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                    <span id="days" style="font-size: 1.5rem; display: block;">0</span>Days
+                </div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                    <span id="hours" style="font-size: 1.5rem; display: block;">0</span>Hours
+                </div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                    <span id="minutes" style="font-size: 1.5rem; display: block;">0</span>Mins
+                </div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
+                    <span id="seconds" style="font-size: 1.5rem; display: block;">0</span>Secs
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            let targetDate = new Date(`July 4, ${currentYear} 00:00:00`);
+
+            if (now > targetDate) {
+                targetDate = new Date(`July 4, ${currentYear + 1} 00:00:00`);
+            }
+
+            const diff = targetDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = d;
+            document.getElementById('hours').innerText = h;
+            document.getElementById('minutes').innerText = m;
+            document.getElementById('seconds').innerText = s;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+    <!-- History Section -->
+    <section id="history" class="container gray-bg">
+        <h2>History and Culture</h2>
+        <p>
+            The village has a rich history and cultural heritage. 
+            The population is mainly engaged in animal husbandry, agriculture (potato cultivation), and beekeeping. 
+            The traditional holidays and customs of Javakheti have been preserved in Dilif from generation to generation.
+        </p>
+    </section>
+
+    <!-- Sightseeing Section -->
+    <section id="sightseeing" class="container">
+        <h2>Sightseeing</h2>
+        <div class="cards">
+            <!-- St. Vardanants Church -->
+            <div class="card">
+                <img src="church.jpg" alt="St. Vardanants Church" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>Saint Vardanants Church</h3>
+                
+                <p>The Saint Vardanants Church of Dilif village was built in 1866. However, over the years it fell into disrepair and was turned into a warehouse for storing various types of grain.</p>
+                
+                <p style="margin-top: 8px;">Carved on the wall of the church entrance is: <em>"1866 Saint Vardanants Church. Dilif village"</em>. In the records of 1847-1885, until 1870, the active church in the village is mentioned under the name of Saint George, and afterwards as Saint Vardan. In the 1880s, the church under the name of Saint Vardan is mentioned as a stone structure with a wooden roof.</p>
+                
+                <p style="margin-top: 8px;">The church also had its own parish school, information about which is reported starting from the 60s of the 19th century. According to these, it was opened through the funds of the local community in 1864 and had 20 students at the time.</p>
+                
+                <p style="margin-top: 8px;">In 2017, initiated by former residents of Dilif, church restoration works were carried out. The roof of the church was repaired, the dome was restored, and interior finishing works were completed.</p>
+                
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ On October 12, 2018, by the hand of His Grace Bishop Vazgen Mirzakhanyan, Primate of the Armenian Diocese in Georgia, the Holy Vardan Church was re-consecrated. The door-opening ceremony was performed accompanied by Priest Tigran Mkhitaryan and Priest Gevorg Asatryan.</p>
+            </div>
+
+            <!-- Nature of Javakheti -->
+            <div class="card">
+                <h3>Nature of Javakheti</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0;">
+                    <img src="nature1.jpg" alt="Nature 1" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature2.jpg" alt="Nature 2" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature3.jpg" alt="Nature 3" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature4.jpg" alt="Nature 4" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                </div>
+                <p>Surrounding mountains and alpine meadows that offer a unique view in any season of the year.</p>
+                
+                <p style="margin-top: 10px;">🏞️ <strong>Natural uniqueness:</strong> The high mountains and alpine meadows of Javakheti are cool and green in summer, and covered with a thick layer of snow in winter, creating fairy-tale views.</p>
+                
+                <p style="margin-top: 8px;">🌾 <strong>Local nature:</strong> The surroundings of the village are rich in clean mountain air, medicinal herbs, and natural crystal springs that give life to local agriculture and animal husbandry.</p>
+            </div>
+
+            <!-- Springs and Monuments -->
+            <div class="card">
+                <img src="fountain.jpg" alt="Springs and Monuments" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>Springs and Monuments</h3>
+                <p>The cool springs of the village and the monuments dedicated to local heroes and history.</p>
+
+                <p style="margin-top: 10px;">💧 <strong>Cool springs:</strong> Dilif is famous for its cold and crystal springs, which for centuries have been the gathering place for villagers and a source of coolness in the summer heat.</p>
+
+                <p style="margin-top: 8px;">🎖️ <strong>Memory and respect:</strong> The monuments erected in the village symbolize the heroic past, patriotism, and respect of the people of Dilif for the memory of their ancestors who gave their lives for the homeland.</p>
+            </div>
+
+            <!-- School Card -->
+            <div class="card">
+                <img src="school.jpg" alt="Dilif Public School" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>Dilif Public School</h3>
+                <p>The school is the most important educational and cultural center of the village, where the children of Dilif study.</p>
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #555;">🏆 <strong>Page of Pride:</strong> School student <strong>Sergey Avetisyan</strong> (9th grade) won the "Etalon" intellectual competition and represented the Ninotsminda Municipality in the final round.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container gray-bg" style="text-align: center;">
+        <h2>Location and Contact</h2>
+        <p><strong>Region:</strong> Samtskhe-Javakheti</p>
+        <p><strong>District:</strong> Ninotsminda</p>
+        <p><strong>Village:</strong> Dilif</p>
+        
+        <div class="social-icons" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <!-- Instagram -->
+            <a href="https://instagram.com/_kirakosyan_2011" target="_blank" style="background: #E1306C; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            
+            <!-- Telegram -->
+            <a href="https://t.me/dilifvillage" target="_blank" style="background: #0088cc; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            
+            <!-- Email -->
+            <a href="mailto:dilif.village@gmail.com" style="background: #555555; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </section>
+
+    <!-- Village Song -->
+    <section class="container card" style="text-align: center;">
+        <h2>🎵 Song About the Village</h2>
+        <p style="margin-bottom: 15px; font-weight: bold; color: #555;">
+            Soso Hayrapetyan and Vardan Urumyan - Dilif 2021
+        </p>
+        <a href="https://youtu.be/OZretlBDfL4" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);">
+            ▶ Listen to Song on YouTube
+        </a>
+    </section> 
+
+    <!-- 2nd Village Song -->
+    <section class="container card" style="text-align: center;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">🎵 2nd Song of the Village</h3>
+        <p style="font-size: 16px; margin-bottom: 15px;">
+            The second song dedicated to Dilif village
+        </p>
+        <a href="https://youtu.be/-nwbG3ntVsg" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            ▶️ Listen to 2nd Song on YouTube
+        </a>
+    </section>
+
+    <section id="support" style="text-align: center; padding: 20px;">
+        <h3>Support Website Creation</h3>
+        <p>Dear visitor, this website was created to preserve the history and culture of Dilif village. Your donations will help the further development of the website.</p>
+        <p><strong>Bank of Georgia (BOG) IBAN:</strong></p>
+        <div style="display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+            <code id="ibanText" style="font-size: 16px; font-weight: bold; color: #333;">GE27BG0000000610538015</code>
+            <button onclick="copyIban()" style="margin-left: 10px; padding: 5px 10px; cursor: pointer; background-color: #ffcc00; border: none; border-radius: 3px; font-weight: bold;">📋 Copy</button>
+        </div>
+        <p id="copyMessage" style="color: green; font-size: 14px; margin-top: 5px; display: none;">Account number copied.</p>
+    </section>
+
+    <!-- Guestbook -->
+    <section class="container card" style="text-align: left;">
+        <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 Guestbook / Reviews</h3>
+        <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+            Leave your review or warm message about the village 👇
+        </p>
+
+        <!-- Guestbook Form -->
+        <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="gb-name" placeholder="Your name..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+            <textarea id="gb-message" placeholder="Your review or message..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+            <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                ✉️ Send Review
+            </button>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <!-- Entries List -->
+        <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+                <strong>Suren Kirakosyan</strong> <span style="font-size: 0.8rem; color: #888; float: right;">08.03.2026</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">Welcome to the official website of our village. We are glad to see everyone here. ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function addGuestMessage() {
+            const nameInput = document.getElementById('gb-name');
+            const msgInput = document.getElementById('gb-message');
+            const entriesContainer = document.getElementById('guestbook-entries');
+
+            if (!nameInput.value.trim() || !msgInput.value.trim()) {
+                alert('Please fill in both your name and message.');
+                return;
+            }
+
+            const dateNow = new Date().toLocaleDateString('en-US');
+
+            const newEntry = document.createElement('div');
+            newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+            newEntry.innerHTML = `
+                <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+            `;
+
+            entriesContainer.prepend(newEntry);
+
+            nameInput.value = '';
+            msgInput.value = '';
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+
+    <!-- Support Section -->
+    <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">📸 Support</h3>
+        <p style="font-size: 16px; line-height: 1.5;">
+            If you have nice pictures of the village, send them to our Telegram: 
+            <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>:
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Dilif Village Resource Website | Dilif Village</p>
+        <p class="company-credits">Page created by <strong>KIRAKOSYAN Company</strong></p>
+        
+        <!-- Special Thanks -->
+        <p style="margin-top: 8px; font-size: 0.88rem; color: #e0e0e0; font-style: italic;">
+            ✨ <strong>Ofelya Kirakosyan</strong> supported and helped in the process of creating the website
+        </p>
+    </footer>
+
+    <!-- Visitor Counter -->
+    <div style="text-align: center; margin: 15px 0; font-family: sans-serif;">
+        <p style="margin-bottom: 5px; font-size: 0.85rem; color: #666;">👁️ Visits:</p>
+        <span id="visit-count" style="background: #1B365D; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: inline-block;">
+            0
+        </span>
+    </div>
+
+    <script>
+        let visits = localStorage.getItem('dilif_visits');
+        if (!visits) {
+            visits = 120;
+        } else {
+            visits = parseInt(visits) + 1;
+        }
+        localStorage.setItem('dilif_visits', visits);
+        document.getElementById('visit-count').innerText = visits;
+    </script>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('theme-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-btn').textContent = '☀️';
+        }
+    </script>
+
+    <script>
+        function copyIban() {
+            const ibanElement = document.getElementById("ibanText").innerText;
+            navigator.clipboard.writeText(ibanElement).then(() => {
+                const msg = document.getElementById("copyMessage");
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 3000);
+            });
+        }
+    </script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            for (let i = 1; i <= 3; i++) {
+                if (localStorage.getItem('dilif_poll_' + i)) {
+                    const card = document.getElementById('poll-' + i);
+                    if (card) {
+                        const options = card.querySelector('.poll-options');
+                        const thankyou = card.querySelector('.poll-thankyou');
+                        if (options) options.style.display = 'none';
+                        if (thankyou) thankyou.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function answerPoll(pollNumber, option) {
+            localStorage.setItem('dilif_poll_' + pollNumber, option);
+            const card = document.getElementById('poll-' + pollNumber);
+            if (card) {
+                const options = card.querySelector('.poll-options');
+                const thankyou = card.querySelector('.poll-thankyou');
+                if (options) options.style.display = 'none';
+                if (thankyou) thankyou.style.display = 'block';
+            }
+        }
+    </script>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Back to top">↑</button>
+
+    <script>
+        window.onscroll = function() { 
+            scrollFunction(); 
+        };
+
+        function scrollFunction() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
