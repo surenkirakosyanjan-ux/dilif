@@ -14,25 +14,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="fav.jpg">
 </head>
 <body>
-<!-- Աշնանային դեկորատիվ անկյուններ -->
-<style>
-.autumn-corner {
-    position: fixed;
-    z-index: 100;
-    pointer-events: none;
-    font-size: 40px;
-    user-select: none;
-    opacity: 0.9;
-}
-.corner-top-left { top: 15px; left: 15px; }
-.corner-top-right { top: 15px; right: 15px; }
-.corner-bottom-left { bottom: 15px; left: 15px; }
-.corner-bottom-right { bottom: 15px; right: 15px; }
-</style>
-<div class="autumn-corner corner-top-left">🍁</div>
-<div class="autumn-corner corner-top-right">🍒</div>
-<div class="autumn-corner corner-bottom-left">🍄</div>
-<div class="autumn-corner corner-bottom-right">🎃</div>
     <!-- Header & Navigation -->
     <header>
         <div class="logo" style="display: inline-block; vertical-align: middle; margin-right: 20px;">
@@ -198,6 +179,103 @@
 
     <!-- Hero Banner -->
     <section class="hero">
+<!-- Աշնանային դեկորատիվ անկյուններ -->
+<style>
+.autumn-frame-corner {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    z-index: 50;
+    pointer-events: none;
+    border-color: #ffb703;
+    border-style: solid;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));
+}
+.frame-tl {
+    top: 15px; left: 15px;
+    border-width: 4px 0 0 4px;
+    border-top-left-radius: 10px;
+}
+.frame-tl::before {
+    content: '🍁';
+    position: absolute; top: 2px; left: 2px; font-size: 28px;
+}
+.frame-tr {
+    top: 15px; right: 15px;
+    border-width: 4px 4px 0 0;
+    border-top-right-radius: 10px;
+}
+.frame-tr::before {
+    content: '🍂';
+    position: absolute; top: 2px; right: 2px; font-size: 28px;
+}
+.frame-bl {
+    bottom: 15px; left: 15px;
+    border-width: 0 0 4px 4px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+}
+.frame-bl:hover {
+    transform: translateY(-5px);
+}
+.frame-bl::before {
+    content: '🌿';
+    position: absolute; bottom: 2px; left: 2px; font-size: 26px;
+}
+.frame-br {
+    bottom: 15px; right: 15px;
+    border-width: 0 4px 4px 0;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+}
+.frame-br:hover {
+    transform: translateY(-5px);
+}
+.frame-br::before {
+    content: '🌾';
+    position: absolute; bottom: 2px; right: 2px; font-size: 26px;
+}
+/* Հայերեն գրությունների ընդհանուր ոճ */
+.autumn-tooltip {
+    position: absolute;
+    bottom: 40px;
+    background: rgba(30, 15, 10, 0.95);
+    color: #ffd166;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border: 1px solid #ffb703;
+}
+.frame-bl .autumn-tooltip { left: 0; }
+.frame-br .autumn-tooltip { right: 0; }
+
+.frame-bl:hover .autumn-tooltip,
+.frame-br:hover .autumn-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 50px;
+}
+</style>
+
+<div class="autumn-frame-corner frame-tl"></div>
+<div class="autumn-frame-corner frame-tr"></div>
+<div class="autumn-frame-corner frame-bl">
+    <div class="autumn-tooltip">Արդեն աշուն է 🍂</div>
+</div>
+<div class="autumn-frame-corner frame-br">
+    <div class="autumn-tooltip">Ոսկեզօծ Դիլիֆ 🌾</div>
+</div>
         <h1>Բարի Գալուստ Դիլիֆ Գյուղ</h1>
         <p>Սամցխե-Ջավախեթի | Նինոծմինդայի շրջան</p>
     </section>
