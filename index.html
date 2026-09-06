@@ -584,5 +584,43 @@
 
     <!-- Վերև վերադառնալու կոճակ -->
     <button onclick="scrollToTop()" id="scrollTopBtn" style="display:none; position:fixed; bottom:20px; right:20px; z-index:99; background:#2575fc; color:white; border:none; padding:10px 15px; border-radius:50%; cursor:pointer; font-size:18px;" title="Վերև վերադառնալ">↑</button>
+	<style>
+.falling-leaf {
+    position: fixed;
+    top: -50px;
+    z-index: 9999;
+    user-select: none;
+    pointer-events: none;
+    animation: fallLinear linear infinite;
+}
+@keyframes fallLinear {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+</style>
+
+<script>
+function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.classList.add('falling-leaf');
+    leaf.innerHTML = ['🍂', '🍁', '🍃'][Math.floor(Math.random() * 3)];
+    leaf.style.left = Math.random() * window.innerWidth + 'px';
+    leaf.style.fontSize = (Math.random() * 15 + 15) + 'px';
+    leaf.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    document.body.appendChild(leaf);
+    
+    setTimeout(() => {
+        leaf.remove();
+    }, 6000);
+}
+
+setInterval(createLeaf, 300);
+</script>
 </body>
 </html>
