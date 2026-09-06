@@ -3,39 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>დილიფი | სოფელ დილიფის შესახებ</title>
+    <title>დიլիֆի | դիլիֆի մասին</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-	<link rel="icon" type="image/png" href="favicon.png">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	
+    <link rel="icon" type="image/jpeg" href="fav.jpg">
+    <link rel="apple-touch-icon" href="fav.jpg">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="fav.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="fav.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="fav.jpg">
 </head>
 <body>
-
-    <!-- Header -->
+    <!-- Header & Navigation -->
     <header>
-        <div class="logo">დილიფი / ԴԻԼԻՖ</div>
- <nav>
-    <ul>
-        <li><a href="#about">ჩვენს შესახებ</a></li>
-        <li><a href="#sightseeing">ღირსშესანიშნაობები</a></li>
-        <li><a href="barbar.html">დიალექტი</a></li>
-        <li><a href="gallery.html">ფოტოები</a></li>
-		<li><a href="videos-ka.html">ვიდეოები</a></li>
-        <li><a href="#contact">კონტაქტი</a></li>
-    </ul>
-</nav>
-        <!-- Language Switcher -->
-      <div class="lang-switch">
-    <a href="index.html">
-        <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
-    </a> | 
-    <button class="active">
-        <img src="https://flagcdn.com/w20/ge.png" alt="Georgia" style="vertical-align: middle;">
-    </button> | 
-    <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
-</div>
+        <div class="logo" style="display: inline-block; vertical-align: middle; margin-right: 20px;">
+            <img src="favicon.png" alt="Dilif Logo" style="height: 45px; width: auto; display: block;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">ჩვენ შესახებ</a></li>
+                <li><a href="#sightseeing">ღირსშესանշանծանոթագրություններ</a></li>
+                <li><a href="barbar.html">კილო-դիալեկտի</a></li>
+                <li><a href="gallery.html">ფოტოები</a></li>
+                <li><a href="videos.html">ვიდეოები</a></li>
+                <li><a href="#contact">კონտაქტი</a></li>
+            </ul>
+        </nav>
+    <!-- Language Switcher & Auth -->
+        <div class="lang-switch" style="display: flex; align-items: center; gap: 8px;">
+            <a href="index.html">
+                <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
+            </a> | 
+            <button class="active">
+                <img src="https://flagcdn.com/w20/ge.png" alt="Georgia" style="vertical-align: middle;">
+            </button> | 
+            <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
+            
+            <!-- Այստեղ փոխվել է կոճակի տեղը, որպեսզի հայտնվի օգտանունը կամ դուրս գալու կոճակը -->
+            <div id="userAuthContainer" style="display: inline-block; margin-left: 10px;">
+                <button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">შესვლა</button>
+            </div>
+        </div>
     </header>
-
+   <!-- Մուտք / Գրանցման պատուհան -->
+    <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; text-align: center;">
+            <span onclick="closeAuthModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888;">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom: 20px; color: #333;">შესვლა</h3>
+            
+            <!-- Նոր դաշտ Username-ի համար, որը երևում է միայն գրանցման ժամանակ -->
+            <input type="text" id="authUsername" placeholder="მომხმარებლის სახელი (Username)" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; display: none;">
+            
+            <input type="email" id="authEmail" placeholder="ელ. ფոճտա" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+            <input type="password" id="authPassword" placeholder="პարոլი" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+            <button id="authSubmitBtn" style="width: 100%; background: #2575fc; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;">შესვლა</button>
+            <p style="font-size: 13px; color: #666; cursor: pointer; margin-top: 15px;" onclick="toggleAuthMode()">არ გაქვთ ანգարի? დარეგիստրվեք</p>
+        </div>
+    </div>
+    <!-- Firebase SDK-ներ -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+   <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_K1S7HNliPo9GvQt2IB7m74ApxGwCDHg",
+            authDomain: "dilif-village.firebaseapp.com",
+            projectId: "dilif-village",
+            storageBucket: "dilif-village.appspot.com",
+            messagingSenderId: "1011262538335",
+            appId: "1:1011262538335:web:fa5b8f6b0653d1f192d1ea"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        function openAuthModal() {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+        let isLogin = true;
+        function toggleAuthMode() {
+            isLogin = !isLogin;
+            const usernameInput = document.getElementById('authUsername');
+            document.getElementById('modalTitle').innerText = isLogin ? 'შესვლა' : 'რეგისტრაცია';
+            document.getElementById('authSubmitBtn').innerText = isLogin ? 'შესვლა' : 'რეგისტრაცია';
+            usernameInput.style.display = isLogin ? 'none' : 'block';
+        }
+        // Հետևում ենք օգտատիրոջ մուտքի կարգավիճակին
+        auth.onAuthStateChanged((user) => {
+            const container = document.getElementById('userAuthContainer');
+            if (user) {
+                // Եթե մուտք է գործել, վերցնում ենք անունը (Firestore-ից կամ Profile-ից)
+                db.collection('users').doc(user.uid).get().then((doc) => {
+                    let username = "მომხმარებელი";
+                    if (doc.exists && doc.data().username) {
+                        username = doc.data().username;
+                    } else if (user.displayName) {
+                        username = user.displayName;
+                    } else {
+                        username = user.email.split('@')[0];
+                    }
+                    container.innerHTML = `
+                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${username}</span>
+                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">გასვლა</button>
+                    `;
+                }).catch(() => {
+                    container.innerHTML = `
+                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${user.email.split('@')[0]}</span>
+                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">გასვლა</button>
+                    `;
+                });
+            } else {
+                container.innerHTML = `<button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">შესვლა</button>`;
+            }
+        });
+        function logoutUser() {
+            auth.signOut().then(() => {
+                alert('თქვენ გამოხვედით ანգարից');
+            });
+        }
+        document.getElementById('authSubmitBtn').addEventListener('click', function() {
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            const username = document.getElementById('authUsername').value;
+            if (!email || !password || (!isLogin && !username)) {
+                alert('გთხოვთ შეავსել բոլոր դաշտերը');
+                return;
+            }
+            if (isLogin) {
+                auth.signInWithEmailAndPassword(email, password)
+                    .then(() => {
+                        alert('წარმატებით შეხვედით!');
+                        closeAuthModal();
+                    })
+                    .catch((error) => {
+                        alert('Սխալ՝ ' + error.message);
+                    });
+            } else {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        // Պահպանում ենք օգտանունը Firestore-ում
+                        return db.collection('users').doc(user.uid).set({
+                            username: username,
+                            email: email
+                        });
+                    })
+                    .then(() => {
+                        alert('Անգարը հաջողությամբ ստեղծվեց!');
+                        closeAuthModal();
+                    })
+                    .catch((error) => {
+                        alert('Սխալ՝ ' + error.message);
+                    });
+            }
+        });
+    </script>
     <!-- Hero Banner -->
     <section class="hero">
 <!-- Աշնանային դեկորատիվ անկյուններ -->
@@ -118,7 +242,6 @@
 }
 .frame-bl .autumn-tooltip { left: 0; }
 .frame-br .autumn-tooltip { right: 0; }
-
 .frame-bl:hover .autumn-tooltip,
 .frame-br:hover .autumn-tooltip {
     opacity: 1;
@@ -126,275 +249,435 @@
     bottom: 50px;
 }
 </style>
-
 <div class="autumn-frame-corner frame-tl"></div>
 <div class="autumn-frame-corner frame-tr"></div>
 <div class="autumn-frame-corner frame-bl">
-    <div class="autumn-tooltip">შემოდგომაა 🍂</div>
+    <div class="autumn-tooltip">უკვე შემოდგომაა 🍂</div>
 </div>
 <div class="autumn-frame-corner frame-br">
-    <div class="autumn-tooltip">ოქროსფერი დილიფი 🌾</div>
+    <div class="autumn-tooltip">ოქროსფერი დիլիֆի 🌾</div>
 </div>
-        <h1>კეთილი იყოს თქვენი მობრძანება სოფელ დილიფში</h1>
-        <p>სამცხე-ჯავახეთი | ნინოწმინდის მუნიციპალიტეტი</p>
+        <h1>მოգესალმებით სოფელ დիլիֆში</h1>
+        <p>სამცხե-ჯავახეთი | ნინոծმինդայի მუნიციպალიტეტი</p>
     </section>
-<!-- ამინდი -->
-<section class="container" style="text-align: center; margin-top: 20px;">
-    <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: inline-block; max-width: 100%;">
-        <h3 style="margin-bottom: 10px; color: #1b365d;">⛅ ამინდი დილიფში</h3>
-        <iframe src="https://wttr.in/Ninotsminda?lang=ka&format=%C+%t+%w+%h" frameborder="0" style="width: 100%; height: 50px; border: none;"></iframe>
-    </div>
-</section>
+    <!-- Հարցումներ (2 հարց) -->
+    <section id="poll-container" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+        <h3 style="text-align: center; color: #1b365d; margin-bottom: 25px; font-size: 24px;">გამოკითხვები დիլիֆի մասին</h3>
+        <div class="poll-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <!-- Հարց 1 -->
+            <div class="poll-card" id="poll-1" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p><strong>1. რომელია დիլիֆის ყველაზე ლამაზი სეզონი?</strong></p>
+                <div class="poll-options" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="answerPoll(1, 'Գարուն')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">გაზაფხული</button>
+                    <button onclick="answerPoll(1, 'Ամառ')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ზაფხული</button>
+                    <button onclick="answerPoll(1, 'Աշուն')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">შემოდგომა</button>
+                    <button onclick="answerPoll(1, 'Ձմեռ')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ზამთარი</button>
+                </div>
+                <div class="poll-thankyou" style="display: none; margin-top: 15px; color: green; font-weight: bold;">გმადლობთ ხმის მიცեմისთვის!</div>
+            </div>
+            <!-- Հարց 2 -->
+            <div class="poll-card" id="poll-2" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p><strong>2. ხშირად სტუმრობთ დիլիֆს?</strong></p>
+                <div class="poll-options" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="answerPoll(2, 'Ապրում եմ այնտեղ')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ვცხოვრობ იქ</button>
+                    <button onclick="answerPoll(2, 'Ամեն ամառ գալիս եմ')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ვმოგზაურობ ყოველ ზაფხულს</button>
+                    <button onclick="answerPoll(2, 'Շատ վաղուց չեմ եղել')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ძალიან ძველად არ ვყოფილვარ</button>
+                    <button onclick="answerPoll(2, 'Հպարտ եմ, որ դիլիֆցի եմ')" style="padding: 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">ვამაყობ, რომ დիլիֆელი ვარ</button>
+                </div>
+                <div class="poll-thankyou" style="display: none; margin-top: 15px; color: green; font-weight: bold;">გმადლობთ ხმის მიცեմისთვის!</div>
+            </div>
+        </div>
+    </section>
+    <!-- Եղանակի Վիջեթ -->
+    <section id="weather-section" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
+        <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px; font-size: 24px;">🌦️ ამინდი დիլիֆში ამ კვირაში</h3>
+        <div id="weather-grid" class="weather-grid">
+            <p style="text-align: center; grid-column: 1 / -1; color: #666;">იტვირთება ამინდის მონაცემები...</p>
+        </div>
+    </section>
+    <script>
+        async function getWeatherData() {
+            try {
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.26&longitude=43.58&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+                const data = await response.json();
+                const weatherGrid = document.getElementById('weather-grid');
+                weatherGrid.innerHTML = '';
+                const days = ['კვირა', 'ორშաբათი', 'სამშաբათი', 'ოთხშաբათი', 'հինգշաբթի', 'პარასკევი', 'შაბათი']; // Translated days or keep JS day names
+                
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date(data.daily.time[i]);
+                    const georgianDays = ['კვირა', 'ორშաբათი', 'სამშաբათი', 'ოთხშաբათი', 'חუთშաբთի', 'პარასკევი', 'შაბათი'];
+                    const dayName = i === 0 ? 'დღეს' : ['კვირა', 'ორშաբათი', 'სამშաբათი', 'ოთხშաբათი', 'חუთშաբთի', 'პარასკევი', 'შაბათი'][date.getDay()];
+                    const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+                    const minTemp = Math.round(data.daily.temperature_2m_min[i]);
+                    const code = data.daily.weathercode[i];
+                    
+                    let weatherIcon = '☀️';
+                    let weatherText = 'მზიანი';
+                    if (code > 0 && code < 3) { weatherIcon = '⛅'; weatherText = 'ცვალებადი'; }
+                    else if (code >= 3 && code < 50) { weatherIcon = '☁️'; weatherText = 'მოქաղული'; }
+                    else if (code >= 50) { weatherIcon = '🌧️'; weatherText = 'წვიმიანი'; }
+                    
+                    const card = document.createElement('div');
+                    card.className = 'weather-card';
+                    card.innerHTML = `
+                        <div class="weather-day">${dayName}</div>
+                        <div class="weather-icon">${weatherIcon}</div>
+                        <div class="weather-temp"><b>${maxTemp}°C</b> / <span style="color: #666;">${minTemp}°C</span></div>
+                        <div class="weather-desc" style="font-size: 12px; color: #555; margin-top: 5px;">${weatherText}</div>
+                    `;
+                    weatherGrid.appendChild(card);
+                }
+            } catch (error) {
+                document.getElementById('weather-grid').innerHTML = '<p style="text-align: center; color: red;">ვერ მოხერხდა ამინდის მონაცემების ჩატვირთვა.</p>';
+            }
+        }
+        getWeatherData();
+    </script>
     <!-- About Section -->
     <section id="about" class="container">
         <h2>სოფლის შესახებ</h2>
         <p>
-            <strong>დილიფი</strong> არის სოფელი საქართველოში, სამცხე-ჯავახეთის მხარის ნინოწმინდის მუნიციპალიტეტში. 
-            მდებარეობს ჯავახეთის ზეგანზე,ზღვის დონიდან 1900 მეტრის სიმაღლეზე მდებარეობს. 
-            სოფელი გამოირჩევა ულამაზესი ბუნებით, სუფთა ჰაერითა და სტუმართმოყვარე მოსახლეობით.
+            <strong>დიլիფი (სომხ.՝ Դիլիֆ, վրաց.՝ დილიფი)</strong> არის სოფელი საქართველოს სამცხե-ჯავახეთის მხარის ნინոծմինդայի მუნიციպალიტეტში. 
+            იგი მდებარეობს ჯავախეთის ზეგანზე, ზღვის დონიდან 1900 მეტრზე მეტ სიმაღლეზე. 
+            სოფელი გამოირჩევა თავისი მშვენიერი ბუნებით, სუფთა ჰაերით და სტუმართმოყვარე მაცხოვრებლებით.
         </p>
     </section>
-	<!-- სოფლის დღის სექცია -->
-<section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
-    <h2 style="color: #1565c0;">🎉 დილიფობის დღე</h2>
-    <p style="font-size: 1.1rem; margin-top: 5px; color: #333;">
-        ყოველ წელს <strong>4 ივლისს</strong> დილიფში საზეიმოდ აღინიშნება სოფლის დღე.
-    </p>
-
-    <!-- ათვლის ვიჯეტი -->
-    <div style="margin-top: 20px;">
-        <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">შემდეგ სოფლის დღემდე დარჩენილია:</p>
-        <div id="countdown" style="display: flex; justify-content: center; gap: 15px; font-weight: bold; flex-wrap: wrap;">
-            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
-                <span id="days" style="font-size: 1.5rem; display: block;">0</span>დღე
-            </div>
-            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
-                <span id="hours" style="font-size: 1.5rem; display: block;">0</span>საათი
-            </div>
-            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
-                <span id="minutes" style="font-size: 1.5rem; display: block;">0</span>წუთი
-            </div>
-            <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;">
-                <span id="seconds" style="font-size: 1.5rem; display: block;">0</span>წამი
+    <!-- Դիլիֆի Օրվա Բաժին -->
+    <section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
+        <h2 style="color: #1565c0;">🎉 დիլիֆის დღე</h2>
+        <p style="font-size: 1.1rem; margin-top: 5px; color: #333;">
+            ყოველწლიურად <strong>4 ივლისს</strong> დիլիֆში დიდი ზეიმით აღინიშნება სოფლის დღე.
+        </p>
+        <div style="margin-top: 20px;">
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 10px;">მომდევნო სოფლის დღემდე დარჩა:</p>
+            <div id="countdown" style="display: flex; justify-content: center; gap: 15px; font-weight: bold; flex-wrap: wrap;">
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;"><span id="days" style="font-size: 1.5rem; display: block;">0</span>დღე</div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;"><span id="hours" style="font-size: 1.5rem; display: block;">0</span>საათი</div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;"><span id="minutes" style="font-size: 1.5rem; display: block;">0</span>წუთი</div>
+                <div style="background: #1565c0; color: white; padding: 10px 15px; border-radius: 8px; min-width: 65px;"><span id="seconds" style="font-size: 1.5rem; display: block;">0</span>წმ</div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- ათვლის სკრიპტი -->
-<script>
-    function updateCountdown() {
-        const now = new Date();
-        let currentYear = now.getFullYear();
-        let targetDate = new Date(`July 4, ${currentYear} 00:00:00`);
-
-        if (now > targetDate) {
-            targetDate = new Date(`July 4, ${currentYear + 1} 00:00:00`);
+    </section>
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            let targetDate = new Date(`July 4, ${currentYear} 00:00:00`);
+            if (now > targetDate) {
+                targetDate = new Date(`July 4, ${currentYear + 1} 00:00:00`);
+            }
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+            document.getElementById('days').innerText = d;
+            document.getElementById('hours').innerText = h;
+            document.getElementById('minutes').innerText = m;
+            document.getElementById('seconds').innerText = s;
         }
-
-        const diff = targetDate - now;
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / 1000 / 60) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        document.getElementById('days').innerText = d;
-        document.getElementById('hours').innerText = h;
-        document.getElementById('minutes').innerText = m;
-        document.getElementById('seconds').innerText = s;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-</script>
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
     <!-- History Section -->
     <section id="history" class="container gray-bg">
         <h2>ისტორია და კულტურა</h2>
         <p>
             სოფელს აქვს მდიდარი ისტორია და კულტურული მემკვიდრეობა. 
-            მოსახლეობა ძირითადად ჩართულია მეცხოველეობაში, მიწათმოქმედებასა (კარტოფილის მოყვანა) და მეფუტკრეობაში. 
-            დილიფში თაობიდან თაობას გადაეცემა ჯავახეთის ტრადიციული დღესასწაულები და ჩვეულებები.
+            მოსახლეობა ძირითადად დაკავებულია მესაქონლეობით, მიწათმოქმედებით (კარტოფილის წარმოებით) და მეფუტკრეობით. 
+            დიլիֆում თაობიდან თაობამდე შენარჩუნებულია ჯავախეთის ტრადიციული დღესასწაულები და წეს-ჩვეულებები.
         </p>
     </section>
-
-   <!-- Sightseeing Section -->
-<section id="sightseeing" class="container">
-    <h2>ღირსშესანიშნაობები</h2>
- <!-- სურბ ვარდანანცის ეკლესია -->
-        <div class="card">
-            <img src="church.jpg" alt="სურბ ვარდანანცის ეკლესია" style="width:100%; border-radius:6px; margin-bottom:10px;">
-            <h3>სურბ ვარდანანცის ეკლესია</h3>
-            
-            <p>დილიფის სურბ ვარდანანცის ეკლესია აშენდა 1866 წელს. თუმცა წლების განმავლობაში იგი დაინგრა და საწყობად გადააკეთეს, სადაც სხვადასხვა სახის მარცვლეულს ინახავდნენ.</p>
-            
-            <p style="margin-top: 8px;">ეკლესიის შესასვლელ კედელზე ამოკვეთილია: <em>"1866 სურბ ვარდანანცის ეკლესია. სოფელი დილიფი"</em>. 1847-1885 წლების ჩანაწერებში, 1870 წლამდე, სოფელში მოქმედი ეკლესია მოიხსენიება სურბ გევორგის სახელით, რის შემდეგაც — სურბ ვარდანის სახელით. 1880-იან წლებში სურბ ვარდანის ეკლესია უკვე მოიხსენიება, როგორც ქვისგან აგებული, ხის სახურავიანი ნაგებობა.</p>
-
-            <p style="margin-top: 8px;">ეკლესიას ასევე ჰქონდა სამრევლო სკოლა, რომლის შესახებაც ცნობები XIX საუკუნის 60-იანი წლებიდან იძებნება. ამ ცნობების თანახმად, იგი ადგილობრივი საზოგადოების სახსრებით 1864 წელს გაიხსნა და იმ დროისთვის 20 მოსწავლე ჰყავდა.</p>
-            
-            <p style="margin-top: 8px;">2017 წელს, ყოფილი დილიფელი ქველმოქმედების ინიციატივით, დაიწყო ეკლესიის სარესტავრაციო სამუშაოები. შეკეთდა ეკლესიის სახურავი, აღდგა გუმბათი და განხორციელდა შიდა მოპირკეთება.</p>
-            
-            <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ 2018 წლის 12 ოქტომბერს საქართველოს სომეხთა ეპარქიის წინამძღვრის, ეპისკოპოს ვაზგენ მირზახანიანის ხელით სურბ ვარდანის ეკლესია ხელახლა აკურთხეს. მღვდელ ტიგრან მხითარიანისა და მღვდელ გევორგ ასატრიანის თანხლებით ეკლესიის კარების გახსნის ცერემონია გაიმართა.</p>
-        </div>
-            <h3>ჯავახეთის ბუნება</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0;">
-                <img src="nature1.jpg" alt="ბუნება 1" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                <img src="nature2.jpg" alt="ბუნება 2" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                <img src="nature3.jpg" alt="ბუნება 3" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                <img src="nature4.jpg" alt="ბუნება 4" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+    <!-- Sightseeing Section -->
+    <section id="sightseeing" class="container">
+        <h2>ღირსშესանշանություններ</h2>
+        <div class="cards">
+            <!-- Եկեղեցի -->
+            <div class="card">
+                <img src="church.jpg" alt="წმინდა ვარდანანცის ეკლესია" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>წმინდა ვარდანანცის ეკლესია</h3>
+                <p>სოფელ დիլիֆის წმინდა ვარდანანცის ეკლესია აშენდა 1866 წელს. თუმცა წლების განმავლობაში ის დაინგრა და საწყობად იქცა, სადაც სხვადასხვა სახის მარცვლეული ინახებოდა.</p>
+                <p style="margin-top: 8px;">ეკლესიის შესასვლელის კედელზე ამოტვიფრულია: <em>«1866 წმინდა ვარდანანცის ეკლესია. სოფელი დիլիֆი»</em>. 1847-1885 წლების ჩანაწერებში, 1870 წლამდე, სოფელში მოქმედი ეკლესია მოხსენიებულია წმინდა გიორგის სახელით, ხოლო შემდეგ — წმინდა ვარდანის სახელით. 1880-იან წლებში წმინდა ვარდანის სახელით უკვე მოხსენიებულია როგორც ქვის ნაგებობა, ხის გადახურვით.</p>
+                <p style="margin-top: 8px;">ეკლესიას ჰქონდა თავისი სამრევლო სკოლა, რომლის შესახებაც ცნობები მოდის მე-19 საუკუნის 60-იანი წლებიდან. მათ თანახმად, იგი გაიხსნა ადგილობრივი საზოგადოების სახსრებით 1864 წელს და იმ დროისთვის ჰყავდა 20 მოსწავლე.</p>
+                <p style="margin-top: 8px;">2017 წელს, ყოფილი დիլիֆელი ქველმოქმედების ინიციატივით, განხორციელდა ეკლესიის სარეაბილიტაციო სამუშაოები. განახლდა ეკლესიის სახურავი, აღდგა გუმბათი და შესრულდა შიდა მოსაპირკეთებელი სამუშაოები.</p>
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ 2018 წლის 12 ოქტომბერს, საქართველოს სომეხთა ეპარքის წინამძღვრის, მეუფე ვაზգեն ეპისკოպոս მირზախանյանის ხელით, ხელახლა იკურთხა წმინდა ვარდანის ეკლესია. მღვდელ ტიգրան მხითარიანისა და მღვდელ გევორգ ასატრიանի თანხლებით შესრულდა ეკლესიის კარის გახსნის ცერემონია.</p>
             </div>
-            <p>გარშემორტყმული მთები და ალპური მდელოები, რომლებიც ულამაზეს ხედებს შლიან წელიწადის ნებისმიერ დროს.</p>
-            
-            <p style="margin-top: 10px;">🏞️ <strong>ბუნების უნიკალურობა:</strong> ჯავახეთის მაღალმთიანი მდელოები ზაფხულში გრილი და მწვანეა, ხოლო ზამთარში უხვი თოვლით იფარება.</p>
-            
-            <p style="margin-top: 8px;">🌾 <strong>ადგილობრივი ბუნება:</strong> სოფლის მიდამოები მდიდარია სუფთა მთის ჰაერით, სამკურნალო ბალახებითა და ცივი წყაროებით.</p>
+            <!-- Բնություն -->
+            <div class="card">
+                <h3>ჯავախეთის ბუნება</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0;">
+                    <img src="nature1.jpg" alt="Բնություն 1" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature2.jpg" alt="Բնություն 2" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature3.jpg" alt="Բնություն 3" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                    <img src="nature4.jpg" alt="Բնություն 4" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                </div>
+                <p>შემორტყმული მთები და ალპური მდელოები, რომლებიც უნიკალურ ხედს შლიან წლისების ნებისმიერ დროს.</p>
+                <p style="margin-top: 10px;">🏞️ <strong>ბუნების თავისებურება:</strong> ჯავախეთის მაღალმთიანი მთები და ალპური მდელოები ზაფხულში გრილი და მწვანეა, ხოლო ზამთარში იფარება თოვლის სქელი ფენით და ქმნის ზღაპრულ პეიზაჟებს.</p>
+                <p style="margin-top: 8px;">🌾 <strong>ადგილობრივი ბუნება:</strong> სოფლის შემოგարენი მდიდარია სუფთა მთის ჰაერით, სამკურნალო მცენარეებით და ბუნებრივი წყაროებით, რომლებიც სიცოცხლეს ანიჭებენ ადგილობრივ სოფლის მეურნეობასა და მესაქონლეობას.</p>
+            </div>
+            <!-- Աղբյուրներ -->
+            <div class="card">
+                <img src="fountain.jpg" alt="Աղբյուրներ և Հուշարձաններ" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>წყაროები და ძეგლები</h3>
+                <p>სოფლის ცივი წყაროები და ადგილობრივი გმირებისა და ისტორიისადმი მიძღვნილი ძეგლები.</p>
+                <p style="margin-top: 10px;">💧 <strong>ცივი წყაროები:</strong> დիլիֆი ცნობილია თავისი ცივი და სუფთა წყაროებით, რომლებიც საუკუნეების განმავლობაში წარმოადგენდნენ სოფლის მკვიდრთა თავშეყრის ადგილს და სიგრილის წყაროს ზაფხულის სიცხეში.</p>
+                <p style="margin-top: 8px;">🎖️ <strong>ხსოვნა და პატივისცემა:</strong> სოფელში აღმართული ძეგლები განასახიერებენ დիլիֆელების გმირულ წარსულს, პატრიოტიზმს და პატივისცემას სამშობლოსთვის თავგანწირული წინაპრების ხსოვნისადმი.</p>
+            </div>
+            <!-- Դպրոց -->
+            <div class="card">
+                <img src="school.jpg" alt="Դիլիֆի հանրային դպրոց" style="width:100%; border-radius:6px; margin-bottom:10px;">
+                <h3>დიլիֆის საჯარო სკოლა</h3>
+                <p>სკოლა სოფლის უმნიშვნელოვანესი საგანმანათლებლო და კულტურული ცენტრია, სადაც სწავლობენ დիլիֆელი ბავშვები.</p>
+                <p style="margin-top: 8px; font-size: 0.95rem; color: #555;">🏆 <strong>სიამაყის ფურცელი:</strong> სკოლის მოსწავლე <strong>სერგეյ ავეტისიანი</strong> (მე-9 კლასი) გახდა ინტელექტუალური კონკურსის „ეტალონის“ გამარჯვებული და წარადგინა ნინოծմինդայի მუნიციպალიტეტი ფინალურ ეტაპზე.</p>
+            </div>
         </div>
-     <div class="card">
-            <img src="fountain.jpg" alt="წყაროები და მონუმენტები" style="width:100%; border-radius:6px; margin-bottom:10px;">
-            <h3>წყაროები და მონუმენტები</h3>
-            <p>სოფლის ცივი წყაროები და ადგილობრივი გმირებისა და ისტორიისადმი მიძღვნილი ძეგლები.</p>
-
-            <p style="margin-top: 10px;">💧 <strong>ანკარა წყაროები:</strong> დილიფი ცნობილია თავისი ცივი წყაროებით, რომლებიც საუკუნეების მანძილზე სოფლის მცხოვრებთა შეკრების ადგილი იყო.</p>
-
-            <p style="margin-top: 8px;">🎖️ <strong>ხსოვნა და პატივისცემა:</strong> სოფელში აღმართული ძეგლები დილიფელების გმირულ წარსულსა და წინაპრებისადმი პატივისცემას განასახიერებს.</p>
-        </div>
-		<!-- სკოლის ბარათი -->
-        <div class="card">
-            <img src="school.jpg" alt="დილიფის საჯარო სკოლა" style="width:100%; border-radius:6px; margin-bottom:10px;">
-            <h3>დილიფის საჯარო სკოლა</h3>
-            <p>სკოლა სოფლის უმნიშვნელოვანესი საგანმანათლებლო და კულტურული ცენტრია, სადაც დილიფელი ბავშვები სწავლობენ.</p>
-            <p style="margin-top: 8px; font-size: 0.95rem; color: #555;">🏆 <strong>სიამაყის გვერდი:</strong> სკოლის მოსწავლემ <strong>სერგეი ავეტისიანმა</strong> (მე-9 კლასი) გაიმარჯვა ინტელექტუალურ კონკურსში "ეტალონი" და ნინოწმინდის მუნიციპალიტეტი ფინალურ ეტაპზე წარადგინა.</p>
-
- <!-- Contact Section -->
-   <section id="contact" class="container gray-bg" style="text-align: center;">
-    <h2>მდებარეობა და კონტაქტი</h2>
-    <p><strong>რეგიონი:</strong> სამცხე-ჯავახეთი (Samtskhe-Javakheti)</p>
-    <p><strong>რაიონი:</strong> ნინოწმინდა (Ninotsminda)</p>
-    <p><strong>სოფელი:</strong> დილიფი (Dilif)</p>
-    
-    <div class="social-icons" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-        <!-- Instagram -->
-        <a href="https://instagram.com/_kirakosyan_2011" target="_blank" style="background: #E1306C; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
-            <i class="fab fa-instagram"></i> Instagram
-        </a>
+    </section>
+    <!-- Contact & Socials -->
+    <section id="contact" class="container gray-bg" style="text-align: center;">
+        <h2>მდებარეობა და კონტაქტი</h2>
+        <p><strong>მხარე:</strong> Samtskhe-Javakheti (სამცხე-ჯავახეთი)</p>
+        <p><strong>მუნიციպალიტეტი:</strong> Ninotsminda (ნინოծմինդա)</p>
+        <p><strong>სოფელი:</strong> Dilif (დიլիფი)</p>
         
-        <!-- Telegram -->
-        <a href="https://t.me/dilifvillage" target="_blank" style="background: #0088cc; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
-            <i class="fab fa-telegram"></i> Telegram
-        </a>
-        
-        <!-- Email -->
-        <a href="mailto:dilif.village@gmail.com" style="background: #555555; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
-            <i class="fas fa-envelope"></i> Email
-        </a>
-    </div>
-</section>
-<div style="max-width: 800px; margin: 30px auto; padding: 10px; background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
-    <h3 style="text-align: center; margin-bottom: 15px; color: #333; font-family: sans-serif;">📍 Գյուղի քարտեզը 3D տեսքով</h3>
-    <iframe width="100%" 
-        height="380" 
-        style="border:0; border-radius: 12px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=41.27456,43.46906&t=k&z=16&output=embed">
-    </iframe>
-</div>
-	<!-- სოფლის 1-ლი სიმღერა -->
-<section class="container card" style="text-align: center;">
-    <h2 style="color: #0088cc; margin-bottom: 15px;">🎵 სიმღერა სოფლის შესახებ</h2>
-    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">
-        სოსო ჰაირაპետյանი და ვարդან ურუმიანი - დილიფი 2021
-    </p>
-    <a href="https://youtu.be/OZretLBDFL4" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-        ▶️ მოუსმინეთ სიმღერას YouTube-ზე
-    </a>
-</section>
-
-<!-- სოფლის მე-2 სიმღერა -->
-<section class="container card" style="text-align: center;">
-    <h3 style="color: #0088cc; margin-bottom: 10px;">🎵 სოფლის მე-2 სიმღერა</h3>
-    <p style="font-size: 16px; margin-bottom: 15px;">
-        სოფელ დილიფის მიძღვნილი მეორე სიმღერა
-    </p>
-    <a href="https://youtu.be/-nwbG3ntVsg" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-        ▶️ მოუსმინეთ მე-2 სიმღერას YouTube-ზე
-    </a>
-</section>
-<!-- სტუმრების წიგნი -->
-<section class="container card" style="text-align: left;">
-    <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 სტუმრების წიგნი / შეფასებები</h3>
-    <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
-        დატოვეთ თქვენი აზრი ან თბილი სიტყვა სოფლის შესახებ 👇
-    </p>
-
-    <!-- შეფასების ფორმა -->
-    <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
-        <input type="text" id="gb-name" placeholder="თქვენი სახელი..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
-        <textarea id="gb-message" placeholder="თქვენი შეფასება ან წერილი..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
-        <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
-            ✉️ შეფასების გაგზავნა
-        </button>
-    </div>
-
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-
-    <!-- ჩანაწერების სია -->
-    <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
-            <strong>სურენ კირაკოსიანი</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
-            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">მოგესალმებით ჩვენი სოფლის ოფიციალურ საიტზე. მოხარული ვართ ყველას ნახვით! ✨</p>
+        <div class="social-icons" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://instagram.com/_kirakosyan_2011" target="_blank" style="background: #E1306C; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://t.me/dilifvillage" target="_blank" style="background: #0088cc; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:dilif.village@gmail.com" style="background: #555555; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-envelope"></i> Email
+            </a>
         </div>
+    </section>
+    <!-- 3D Քարտեզ -->
+    <div style="max-width: 800px; margin: 30px auto; padding: 10px; background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+        <h3 style="text-align: center; margin-bottom: 15px; color: #333; font-family: sans-serif;">📍 სოფლის რუკა 3D ხედით</h3>
+        <iframe width="100%" 
+            height="380" 
+            style="border:0; border-radius: 12px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=41.27456,43.46906&t=k&z=16&output=embed">
+        </iframe>
     </div>
-</section>
-
-<script>
-    function addGuestMessage() {
-        const nameInput = document.getElementById('gb-name');
-        const msgInput = document.getElementById('gb-message');
-        const entriesContainer = document.getElementById('guestbook-entries');
-
-        if (!nameInput.value.trim() || !msgInput.value.trim()) {
-            alert('გთხოვთ შეავსოთ სახელი და შეტყობინება.');
-            return;
+    <!-- Երգեր -->
+    <section class="container card" style="text-align: center;">
+        <h2>🎵 სიმღერა სოფლის შესახებ</h2>
+        <p style="margin-bottom: 15px; font-weight: bold; color: #555;">
+            სოსო ჰაირაპետյան და ვარდან ուրումյան - დիլիფი 2021
+        </p>
+        <a href="https://youtu.be/OZretlBDfL4" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);">
+            ▶ მოუსმინეთ სიმღერას YouTube-ზე
+        </a>
+    </section> 
+    <section class="container card" style="text-align: center;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">🎵 სოფლის მე-2 სიმღერა</h3>
+        <p style="font-size: 16px; margin-bottom: 15px;">
+            სოფელ დիլիֆისადმი მიძღვნილი მეორე სიმღერა
+        </p>
+        <a href="https://youtu.be/-nwbG3ntVsg" target="_blank" style="display: inline-block; background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            ▶️ მოუსმინეთ მე-2 სიმღერას YouTube-ზე
+        </a>
+    </section>
+    <!-- Աջակցություն (Բանկային) -->
+    <section id="support" style="text-align: center; padding: 20px;">
+        <h3>მხარდაჭერა საიტის შექმნას</h3>
+        <p>ძვირფასო სტუმარო, ეს საიტი შეიქმნა სოფელ დիլիֆის ისტორიისა და კულტურის შესანარჩუნებლად. თქვენი შემოწირულობები დაეხმარება საიტის შემდგომ განვითარებას.</p>
+        <p><strong>Bank of Georgia (BOG) IBAN:</strong></p>
+        <div style="display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+            <code id="ibanText" style="font-size: 16px; font-weight: bold; color: #333;">GE27BG0000000610538015</code>
+            <button onclick="copyIban()" style="margin-left: 10px; padding: 5px 10px; cursor: pointer; background-color: #ffcc00; border: none; border-radius: 3px; font-weight: bold;">📋 კოპირება</button>
+        </div>
+        <p id="copyMessage" style="color: green; font-size: 14px; margin-top: 5px; display: none;">ანგარიშის ნომერი დაკოპირდა.</p>
+    </section>
+    <!-- Հյուրերի Գիրք -->
+    <section class="container card" style="text-align: left;">
+        <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 სტუმართა წიგნი / გამოხმაურებები</h3>
+        <p style="text-align: center; font-size: 15px; margin-bottom: 20px; color: #555;">
+            დატოვეთ თქვენი აზრი ან თბილი სიტყვა სოფლის შესახებ 👇
+        </p>
+        <div id="guestbook-form" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="gb-name" placeholder="თქვენი სახელი..." style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;" required>
+            <textarea id="gb-message" placeholder="თქვენი აზრი ან წერილი..." rows="3" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; resize: vertical;" required></textarea>
+            <button onclick="addGuestMessage()" style="background-color: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                ✉️ გამოხმაურების გაგზავნა
+            </button>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <div id="guestbook-entries" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;">
+                <strong>სურեն კირაკოსյան</strong> <span style="font-size: 0.8rem; color: #888; float: right;">03.08.2026</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">მოგესალმებით ჩვენი სოფლის ოფიციალურ საიტზე. სიხარულით ველით ყველას ნახვას! ✨</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        function addGuestMessage() {
+            const nameInput = document.getElementById('gb-name');
+            const msgInput = document.getElementById('gb-message');
+            const entriesContainer = document.getElementById('guestbook-entries');
+            if (!nameInput.value.trim() || !msgInput.value.trim()) {
+                alert('გთხოვთ შეავსოთ როგორც სახელი, ისე შეტყობინება.');
+                return;
+            }
+            const dateNow = new Date().toLocaleDateString('ka-GE');
+            const newEntry = document.createElement('div');
+            newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
+            newEntry.innerHTML = `
+                <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
+                <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
+            `;
+            entriesContainer.prepend(newEntry);
+            nameInput.value = '';
+            msgInput.value = '';
         }
-
-        const dateNow = new Date().toLocaleDateString('ka-GE');
-        const newEntry = document.createElement('div');
-        newEntry.style.cssText = "background: #f9f9f9; padding: 12px; border-radius: 6px; border-left: 4px solid #0088cc;";
-        newEntry.innerHTML = `
-            <strong>${escapeHTML(nameInput.value)}</strong> <span style="font-size: 0.8rem; color: #888; float: right;">${dateNow}</span>
-            <p style="margin-top: 5px; margin-bottom: 0; color: #333;">${escapeHTML(msgInput.value)}</p>
-        `;
-        entriesContainer.prepend(newEntry);
-        nameInput.value = '';
-        msgInput.value = '';
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+    <!-- Աջակցություն (Նկարներ ուղարկելու) -->
+    <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
+        <h3 style="color: #0088cc; margin-bottom: 10px;">📸 მხარდაჭერა</h3>
+        <p style="font-size: 16px; line-height: 1.5;">
+            თუ გაქვთ სოფლის ლამაზი ფოტოები, გამოგვიგზავნეთ ჩვენს Telegram-ზე՝ 
+            <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>:
+        </p>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 დիլիֆის სოფლის რესურსული საიტი | Dilif Village</p>
+        <p class="company-credits">გვერდი მომზადებულია <strong>KIRAKOSYAN Company</strong>-ის მიერ</p>
+        <p style="margin-top: 8px; font-size: 0.88rem; color: #e0e0e0; font-style: italic;">
+            ✨ საიტის მომზადების პროცესს დაეხმარა და მხარი დაუჭირა <strong>ოფելյա կիրակոսյան</strong>-მა
+        </p>
+    </footer>
+    <!-- Այցելուների Հաշիվ -->
+    <div style="text-align: center; margin: 15px 0; font-family: sans-serif;">
+        <p style="margin-bottom: 5px; font-size: 0.85rem; color: #666;">👁️ ვიზიტები:</p>
+        <span id="visit-count" style="background: #1B365D; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: inline-block;">0</span>
+    </div>
+    <script>
+        let visits = localStorage.getItem('dilif_visits');
+        if (!visits) {
+            visits = 120;
+        } else {
+            visits = parseInt(visits) + 1;
+        }
+        localStorage.setItem('dilif_visits', visits);
+        document.getElementById('visit-count').innerText = visits;
+    </script>
+    <!-- Ընդհանուր Սկրիպտներ (Theme, Polls, Scroll to Top, Copiers) -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('theme-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-btn').textContent = '☀️';
+        }
+        function copyIban() {
+            const ibanElement = document.getElementById("ibanText").innerText;
+            navigator.clipboard.writeText(ibanElement).then(() => {
+                const msg = document.getElementById("copyMessage");
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 3000);
+            });
+        }
+        window.onscroll = function() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (btn) {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            }
+        };
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            for (let i = 1; i <= 2; i++) {
+                if (localStorage.getItem('dilif_poll_' + i)) {
+                    const card = document.getElementById('poll-' + i);
+                    if (card) {
+                        const options = card.querySelector('.poll-options');
+                        const thankyou = card.querySelector('.poll-thankyou');
+                        if (options) options.style.display = 'none';
+                        if (thankyou) thankyou.style.display = 'block';
+                    }
+                }
+            }
+        });
+        function answerPoll(pollNumber, option) {
+            localStorage.setItem('dilif_poll_' + pollNumber, option);
+            const card = document.getElementById('poll-' + pollNumber);
+            if (card) {
+                const options = card.querySelector('.poll-options');
+                const thankyou = card.querySelector('.poll-thankyou');
+                if (options) options.style.display = 'none';
+                if (thankyou) thankyou.style.display = 'block';
+            }
+        }
+    </script>
+    <!-- Վերև վերադառնալու կոճակ -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" style="display:none; position:fixed; bottom:20px; right:20px; z-index:99; background:#2575fc; color:white; border:none; padding:10px 15px; border-radius:50%; cursor:pointer; font-size:18px;" title="ზემოთ დაბრუნება">↑</button>
+<style>
+.falling-leaf {
+    position: absolute;
+    top: -50px;
+    z-index: 10;
+    user-select: none;
+    pointer-events: none;
+    animation: fallToPoll linear infinite;
+}
+@keyframes fallToPoll {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
     }
-
-    function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+    100% {
+        transform: translateY(550px) rotate(360deg);
+        opacity: 0;
     }
-</script>
-<!-- მხარდაჭერა -->
-<section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
-    <h3 style="color: #0088cc; margin-bottom: 10px;">📸 მხარდაჭერა</h3>
-    <p style="font-size: 16px; line-height: 1.5;">
-        თუ გაქვთ სოფლის ლამაზი ფოტოები, გააზიარეთ ჩვენს Telegram-ზე: 
-        <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>
-    </p>
-</section>
-   <!-- Footer -->
-<footer>
-    <p>&copy; 2026 სოფელ დილიფის რესურსების საიტი | Dilif Village</p>
-    <p class="company-credits">გვერდი მომზადებულია <strong>KIRAKOSYAN Company</strong>-ს მიერ</p>
+}
+</style>
+<script>
+function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.classList.add('falling-leaf');
+    leaf.innerHTML = '🍁';
+    leaf.style.left = Math.random() * window.innerWidth + 'px';
+    leaf.style.fontSize = (Math.random() * 10 + 18) + 'px';
+    leaf.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
     
-    <!-- Հատուկ Շնորհակալություն -->
-    <p style="margin-top: 8px; font-size: 0.88rem; color: #e0e0e0; font-style: italic;">
-        ✨ ვებ-გვერდის მომზადების პროცესში მხარდაჭერა და დახმარება გაწია <strong>ოფელია კირაკოსიანმა</strong>
-    </p>
-</footer>
-
+    // Տեղադրում ենք միայն վերևի հատվածում
+    document.body.appendChild(leaf);
+    
+    setTimeout(() => {
+        leaf.remove();
+    }, 4500);
+}
+setInterval(createLeaf, 400);
+</script>
 </body>
 </html>
