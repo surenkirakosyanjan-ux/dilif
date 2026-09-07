@@ -406,14 +406,14 @@
             Դիլիֆում սերնդեսերունդ պահպանվել են Ջավախքի ավանդական տոներն ու սովորույթները։
         </p>
     </section>
-
-    <!-- Sightseeing Section -->
+<!-- Sightseeing Section -->
     <section id="sightseeing" class="container">
         <h2>Տեսարժան Վայրեր</h2>
-        <div class="cards">
-            <!-- Եկեղեցի -->
-            <div class="card">
-                <img src="church.jpg" alt="Սուրբ Վարդանանց եկեղեցի" style="width:100%; border-radius:6px; margin-bottom:10px;">
+        <div class="cards" style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <!-- 1. Եկեղեցի -->
+            <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <img src="church.jpg" alt="Սուրբ Վարդանանց եկեղեցի" style="width:100%; max-height: 350px; object-fit: cover; border-radius:6px; margin-bottom:10px; cursor: pointer;" onclick="openModal(this)">
                 <h3>Սուրբ Վարդանանց Եկեղեցի</h3>
                 <p>Դիլիֆ գյուղի Սուրբ Վարդանանց եկեղեցին կառուցվել է 1866 թվականին: Սակայն տարիների ընթացքում քանդվել և վերածվել է պահեստի, որտեղ պահվել է տարբեր տեսակի հացահատիկ:</p>
                 <p style="margin-top: 8px;">Եկեղեցու մուտքի պատին փորագրված է. <em>«1866 Սուրբ Վարդանանց Եկեղեցի. գյուղ Դիլիֆ»</em>: 1847-1885 թվականների մատյաններում, մինչև 1870 թվականը, գյուղում գործող եկեղեցին հիշատակվում է Սուրբ Գևորգ անվամբ, որից հետո` Սուրբ Վարդան: 1880-ական թվականներին արդեն Սուրբ Վարդան անվամբ եկեղեցին հիշատակվում է՝ որպես քարաշեն, փայտածածկ կառույց:</p>
@@ -421,36 +421,74 @@
                 <p style="margin-top: 8px;">2017 թվականին, նախկին Դիլիֆաբնակ բարերարների նախաձեռնությամբ իրականացվեցին եկեղեցու վերանորոգման աշխատանքները: Վերանորոգվեց եկեղեցու տանիքը, վերականգնվեց գմբեթը և կատարվեցին ներքին հարդարման աշխատանքները:</p>
                 <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ 2018 թվականի հոկտեմբերի 12-ին Վիրահայոց թեմի առաջնորդ Գերաշնորհ Տեր Վազգեն եպիսկոպոս Միրզախանյանի ձեռամբ վերաօծվեց Սրբոց Վարդան եկեղեցին: Տեր Տիգրան քահանա ՄԽԻԹԱՐՅԱՆԻ ու Տեր Գևորգ քահանա Ասատրյանի ընկերակցությամբ կատարվեց եկեղեցու դռնբացեքի արարողությունը:</p>
             </div>
-            <!-- Բնություն -->
-            <div class="card">
+
+            <!-- 2. Բնություն -->
+            <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <h3>Ջավախքի Բնությունը</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0;">
-                    <img src="nature1.jpg" alt="Բնություն 1" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                    <img src="nature2.jpg" alt="Բնություն 2" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                    <img src="nature3.jpg" alt="Բնություն 3" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
-                    <img src="nature4.jpg" alt="Բնություն 4" style="width:100%; height:100px; object-fit:cover; border-radius:4px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 10px 0;">
+                    <img src="nature1.jpg" alt="Բնություն 1" style="width:100%; height:150px; object-fit:cover; border-radius:4px; cursor: pointer;" onclick="openModal(this)">
+                    <img src="nature2.jpg" alt="Բնություն 2" style="width:100%; height:150px; object-fit:cover; border-radius:4px; cursor: pointer;" onclick="openModal(this)">
+                    <img src="nature3.jpg" alt="Բնություն 3" style="width:100%; height:150px; object-fit:cover; border-radius:4px; cursor: pointer;" onclick="openModal(this)">
+                    <img src="nature4.jpg" alt="Բնություն 4" style="width:100%; height:150px; object-fit:cover; border-radius:4px; cursor: pointer;" onclick="openModal(this)">
                 </div>
                 <p>Շրջապատող լեռներն ու ալպիական մարգագետինները, որոնք յուրահատուկ տեսարան են բացում տարվա ցանկացած եղանակին:</p>
                 <p style="margin-top: 10px;">🏞️ <strong>Բնության յուրահատկությունը․</strong> Ջավախքի բարձրադիր լեռներն ու ալպիական մարգագետիններն ամռանը զով են ու կանաչապատ, իսկ ձմռանը ծածկվում են հաստ ձյան շերտով՝ ստեղծելով հեքիաթային տեսարաններ։</p>
                 <p style="margin-top: 8px;">🌾 <strong>Տեղական բնությունը․</strong> Գյուղի շրջակայքը հարուստ է մաքուր լեռնային օդով, բուժիչ խոտաբույսերով և բնական վճիտ աղբյուրներով, որոնք կյանք են տալիս տեղի գյուղատնտեսությանն ու անասնապահությանը։</p>
             </div>
-            <!-- Աղբյուրներ -->
-            <div class="card">
-                <img src="fountain.jpg" alt="Աղբյուրներ և Հուշարձաններ" style="width:100%; border-radius:6px; margin-bottom:10px;">
+
+            <!-- 3. Աղբյուրներ -->
+            <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <h3>Աղբյուրներ ու Հուշարձաններ</h3>
                 <p>Գյուղի սառնորակ աղբյուրները և տեղի հերոսներին ու պատմությանը նվիրված հուշարձանները:</p>
                 <p style="margin-top: 10px;">💧 <strong>Սառնորակ աղբյուրներ․</strong> Դիլիֆը հայտնի է իր պաղ ու վճիտ աղբյուրներով, որոնք դարեր ի վեր եղել են գյուղացիների հավաքատեղին ու զովության աղբյուրը ամռան տապին։</p>
                 <p style="margin-top: 8px;">🎖️ <strong>Հիշատակ ու հարգանք․</strong> Գյուղում կանգնեցված հուշարձանները խորհրդանշում են դիլիֆցիների հերոսական անցյալը, հայրենասիրությունն ու հարգանքը՝ հայրենիքի համար իրենց կյանքը տված նախնիների հիշատակի հանդեպ։</p>
             </div>
-            <!-- Դպրոց -->
-            <div class="card">
-                <img src="school.jpg" alt="Դիլիֆի հանրային դպրոց" style="width:100%; border-radius:6px; margin-bottom:10px;">
-                <h3>Դիլիֆի Հանրային Դպրոց</h3>
-                <p>Դպրոցը գյուղի կարևորագույն կրթական և մշակութային կենտրոնն է, որտեղ սովորում են Դիլիֆի երեխաները։</p>
-                <p style="margin-top: 8px; font-size: 0.95rem; color: #555;">🏆 <strong>Հպարտության էջ․</strong> Դպրոցի աշակերտ <strong>Սերգեյ Ավետիսյանը</strong> (9-րդ դասարան) հաղթել է «Էտալոն» ինտելեկտուալ մրցույթում և ներկայացրել Նինոծմինդայի մունիցիպալիտետը եզրափակիչ փուլում։</p>
+
+            <!-- 4 & 5. Տոհմածառը և Դպրոցը կողք կողքի -->
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+                <!-- Կիրակոսյանների տոհմածառի քարտ -->
+                <div style="flex: 1; min-width: 280px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <img src="tohmacar.jpg" alt="Կիրակոսյանների տոհմածառ մաս 1" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
+                        <img src="tohmacar1.jpg" alt="Կիրակոսյանների տոհմածառ մաս 2" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
+                    </div>
+                    <h3 style="color: #0d233a; margin-top: 0;">Կիրակոսյանների տոհմածառ</h3>
+                    <p>Կիրակոսյանների տոհմածառը անձամբ իրենց ձեռքով նկարել են՝ <strong>Տիգրան Կիրակոսյանը</strong> և <strong>Գիորգի Կիրակոսյանը</strong>:</p>
+                </div>
+
+                <!-- Դպրոցի քարտ -->
+                <div style="flex: 1; min-width: 280px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <img src="school.jpg" alt="Դիլիֆի հանրային դպրոց" style="width: 100%; height: 220px; border-radius: 6px; object-fit: cover; margin-bottom: 15px; cursor: pointer;" onclick="openModal(this)">
+                    <h3 style="color: #0d233a; margin-top: 0;">Դիլիֆի Հանրային Դպրոց</h3>
+                    <p>Դպրոցը գյուղի կարևորագույն կրթական և մշակութային կենտրոնն է, որտեղ սովորում են Դիլիֆի երեխաները։</p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: #555;">🏆 <strong>Հպարտության էջ.</strong> Դպրոցի աշակերտ <strong>Սերգեյ Ավետիսյանը</strong> (9-րդ դասարան) հաղթել է «Էտալոն» ինտելեկտուալ մրցույթում և ներկայացրել Նինոծմինդայի մუნիցիպալիտետը եզրափակիչ փուլում։</p>
+                </div>
+
             </div>
+
         </div>
     </section>
+
+    <!-- Modal (Նկարների մեծացման պատուհանը, եթե դեռ չունես քո կայքում) -->
+    <div id="imageModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center;" onclick="closeModal()">
+        <span style="position:absolute; top:20px; right:30px; color:#fff; font-size:40px; font-weight:bold; cursor:pointer;" onclick="closeModal()">&times;</span>
+        <img id="modalImg" style="max-width:90%; max-height:90%; border-radius:8px;">
+    </div>
+
+    <script>
+        // Նկարների մեծացման ֆունկցիաներ
+        function openModal(imgElement) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+    </script>
 
     <!-- Contact & Socials -->
     <section id="contact" class="container gray-bg" style="text-align: center;">
