@@ -1,8 +1,21 @@
 /* General Styles */
-* {
-    box-sizing: border-box;
+/* Կանխում է հորիզոնական սքրոլը և էջի «տատանումը» բջջայիններում */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Ապահովում է, որ նկարները և վիդեոները դուրս չգան էկրանի սահմաններից */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
 }
 body, header, .weather-card, .poll-card, button, a {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -506,3 +519,16 @@ body.dark-mode nav {
 .hero {
     background-attachment: fixed;
 }
+/* Thuyl chi talis, vor kontenty ekranic layn lini */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Bolor elementnery ev nkarnern irenc cnoghi sahmannerum pahelu hamar */
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+box-sizing: border-box;
