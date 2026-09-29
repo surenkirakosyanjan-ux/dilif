@@ -29,7 +29,7 @@
                 <li><a href="#contact">კონტაქტი</a></li>
             </ul>
         </nav>
-    <!-- Language Switcher & Auth -->
+        <!-- Language Switcher & Auth -->
         <div class="lang-switch" style="display: flex; align-items: center; gap: 8px;">
             <a href="index.html">
                 <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
@@ -44,25 +44,26 @@
             </div>
         </div>
     </header>
-   <!-- შესვლის / რეგისტრაციის ფანჯარა -->
+
+    <!-- შესვლის / რეგისტრაციის ფანჯარა -->
     <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
         <div style="background: white; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; text-align: center;">
             <span onclick="closeAuthModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888;">&times;</span>
             <h3 id="modalTitle" style="margin-bottom: 20px; color: #333;">შესვლა</h3>
             
             <input type="text" id="authUsername" placeholder="მომხმარებლის სახელი (Username)" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; display: none;">
-            
             <input type="email" id="authEmail" placeholder="ელ. ფოსტა" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
             <input type="password" id="authPassword" placeholder="პაროლი" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
             <button id="authSubmitBtn" style="width: 100%; background: #2575fc; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;">შესვლა</button>
             <p style="font-size: 13px; color: #666; cursor: pointer; margin-top: 15px;" onclick="toggleAuthMode()">არ გაქვთ ანგარიში? დარეგისტრირდით</p>
         </div>
     </div>
+
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-   <script>
+    <script>
         const firebaseConfig = {
             apiKey: "AIzaSyC_K1S7HNliPo9GvQt2IB7m74ApxGwCDHg",
             authDomain: "dilif-village.firebaseapp.com",
@@ -74,6 +75,7 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+
         function openAuthModal() {
             document.getElementById('authModal').style.display = 'flex';
         }
@@ -88,7 +90,7 @@
             document.getElementById('authSubmitBtn').innerText = isLogin ? 'შესვლა' : 'რეგისტრაცია';
             usernameInput.style.display = isLogin ? 'none' : 'block';
         }
-        // ვადევნებთ თვალყურს მომხმარებლის ავტორიზაციის სტატუსს
+
         auth.onAuthStateChanged((user) => {
             const container = document.getElementById('userAuthContainer');
             if (user) {
@@ -115,11 +117,13 @@
                 container.innerHTML = `<button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">შესვლა</button>`;
             }
         });
+
         function logoutUser() {
             auth.signOut().then(() => {
                 alert('თქვენ გამოხვედით ანგარიშიდან');
             });
         }
+
         document.getElementById('authSubmitBtn').addEventListener('click', function() {
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
@@ -156,17 +160,14 @@
             }
         });
     </script>
-    <!-- Hero Banner -->
-<section class="hero" style="position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; background-image: url('hero-bg.jpg'); background-size: cover; background-position: center;">
-    
-    <!-- Մթնեցնող շերտ -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.45); z-index: 2;"></div>
 
-    <!-- Գլխավոր տեքստեր -->
-    <div class="hero-content" style="position: relative; z-index: 3; color: white;">
-    <h1 style="font-size: 48px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">მოგესალმებით სოფელ დილიფში</h1>
-    <p style="font-size: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">სამცხე / ჯავახეთი / ნინოწმინდის რაიონი</p>
-</div>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>მოგესალმებით სოფელ დილიფში</h1>
+            <p>სამცხე / ჯავახეთი / ნინოწმინდის რაიონი</p>
+        </div>
+    </section>
 
     <!-- ამინდის ვიჯეტი -->
     <section id="weather-section" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
@@ -175,6 +176,7 @@
             <p style="text-align: center; grid-column: 1 / -1; color: #666;">იტვირთება ამინდის მონაცემები...</p>
         </div>
     </section>
+
     <script>
         async function getWeatherData() {
             try {
@@ -213,15 +215,17 @@
         }
         getWeatherData();
     </script>
+
     <!-- About Section -->
     <section id="about" class="container">
         <h2>სოფლის შესახებ</h2>
         <p>
             <strong>დილიფი (ქართ. დილიფი)</strong> არის სოფელი საქართველოში, სამცხე-ჯავახეთის მხარის ნინოწმინდის მუნიციპალიტეტში. 
             იგი მდებარეობს ჯავახეთის ზეგანზე, ზღვის დონიდან 1900 მეტრზე მეტ სიმაღლეზე. 
-            სოფელი გამოირჩევა თავისი მშვენიერი ბუნებით, სუფთა ჰაერითა და სტუმართმოყვარე მცხოვრებლებով.
+            სოფელი გამოირჩევა თავისი მშვენიერი ბუნებით, სუფთა ჰაერითა და სტუმართმოყვარე მცხოვრებლებოვ.
         </p>
     </section>
+
     <!-- დილიფის დღის სექცია -->
     <section class="container card" style="text-align: center; background: linear-gradient(135deg, #e3f2fd, #ffffff); border: 1px solid #90caf9;">
         <h2 style="color: #1565c0;">🎉 დილიფის დღე</h2>
@@ -238,6 +242,7 @@
             </div>
         </div>
     </section>
+
     <script>
         function updateCountdown() {
             const now = new Date();
@@ -259,6 +264,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
+
     <!-- History Section -->
     <section id="history" class="container gray-bg">
         <h2>ისტორია და კულტურა</h2>
@@ -268,12 +274,13 @@
             დილიფში თაობიდან თაობას გადაეცემა ჯავახეთის ტრადიციული დღესასწაულები და ჩვეულებები.
         </p>
     </section>
-<!-- Sightseeing Section -->
+
+    <!-- Sightseeing Section -->
     <section id="sightseeing" class="container">
         <h2>ღირსშესანიშნაობები</h2>
         <div class="cards" style="display: flex; flex-direction: column; gap: 20px;">
             
-            <!-- 1. Եկեղեցի -->
+            <!-- 1. ეკლესია -->
             <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <img src="church.jpg" alt="წმინდა ვარდანის ეკლესია" style="width:100%; max-height: 350px; object-fit: cover; border-radius:6px; margin-bottom:10px; cursor: pointer;" onclick="openModal(this)">
                 <h3>წმინდა ვარდანის ეკლესია</h3>
@@ -284,7 +291,7 @@
                 <p style="margin-top: 8px; font-size: 0.95rem; color: #1b365d; font-weight: 500;">⛪ 2018 წლის 12 ოქტომბერს, საქართველოს სომეხთა ეპარქიის წინამძღვარმა, მისმა ყოვლადუსამღვდელოესობამ ეპისკოპოსმა ვაზგენ მირზახანიანმა ხელახლა აკურთხა წმინდა ვარდანის ეკლესია. ეკლესია მამა ტიგრან მხითარიანის და მამა გევორგ ასატრიანის თანხლებით გაიხსნა.</p>
             </div>
 
-            <!-- 2. Բնություն -->
+            <!-- 2. ბუნება -->
             <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <h3>ჯავახკის ბუნება</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 10px 0;">
@@ -298,7 +305,7 @@
                 <p style="margin-top: 8px;">🌾 <strong>ადგილობრივი ბუნება․</strong> სოფლის მიმდებარე ტერიტორია მდიდარია სუფთა მთის ჰაერით, სამკურნალო მცენარეებითა და ბუნებრივი, სუფთა წყაროებით, რომლებიც სიცოცხლეს ანიჭებენ ადგილობრივ სოფლის მეურნეობასა და მეცხოველეობას.</p>
             </div>
 
-            <!-- 3. Աղբյուրներ -->
+            <!-- 3. წყაროები -->
             <div class="card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <h3>წყაროები და ძეგლები</h3>
                 <p>სოფლის ცივი წყაროები და ადგილობრივი გმირებისა და ისტორიისადმი მიძღვნილი ძეგლები.</p>
@@ -306,27 +313,23 @@
                 <p style="margin-top: 8px;">🎖️ <strong>მეხსიერება და პატივისცემა․</strong> სოფელში აღმართული ძეგლები განასახიერებს დილიფელების გმირულ წარსულს, პატრიოტიზმსა და სამშობლოსთვის თავგანწირული წინაპრების ხსოვნისადმი პატივისცემას.</p>
             </div>
 
-            <!-- 4 & 5. Տոհմածառը և Դպրոցը կողք կողքի -->
+            <!-- 4 & 5. საგვარეულო ხე და სკოლა -->
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
-                <!-- Կիրակոսյանների տոհմածառի քարտ -->
                 <div style="flex: 1; min-width: 280px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                        <img src="tohmacar.jpg" alt="კირაკოսიანების გენეალოგიური ხე ნაწილი 1" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
-                        <img src="tohmacar1.jpg" alt="კირაკოսიანების გენეალოგიური ხე ნაწილი 2" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
+                        <img src="tohmacar.jpg" alt="კირაკოსიანების გენეალოგიური ხე ნაწილი 1" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
+                        <img src="tohmacar1.jpg" alt="კირაკოსიანების გენეალოგიური ხე ნაწილი 2" style="width: 50%; height: 220px; border-radius: 6px; object-fit: cover; cursor: pointer;" onclick="openModal(this)">
                     </div>
                     <h3 style="color: #0d233a; margin-top: 0;">კირაკოსიანების ოჯახის ხე</h3>
-                    <p>კირაკოსიანების საგვარეულო ხე საკუთარი ხელით დახატა՝ <strong>ტიგრან კირაკოსიანი (გიორგი)</strong></p>
+                    <p>კირაკოსიანების საგვარეულო ხე საკუთარი ხელით დახატა: <strong>ტიგრან კირაკოსიანი (გიორგი)</strong></p>
                 </div>
 
-                <!-- Դպրոցի քարտ -->
                 <div style="flex: 1; min-width: 280px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                     <img src="school.jpg" alt="დილიფის საჯარო სკოლა" style="width: 100%; height: 220px; border-radius: 6px; object-fit: cover; margin-bottom: 15px; cursor: pointer;" onclick="openModal(this)">
                     <h3 style="color: #0d233a; margin-top: 0;">დილიფის საჯარო სკოლა</h3>
                     <p>სკოლა სოფლის უმნიშვნელოვანესი საგანმანათლებლო და კულტურული ცენტრია, სადაც დილიფელი ბავშვები სწავლობენ.</p>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: #555;">🏆 <strong>სიამაყის გვერდი.</strong> სკოლის მოსწავლემ <strong> სერგეი ავეტისიანმა</strong> (მე-9 კლასი) გაიმარჯვა ინტელექტუალურ კონკურსში „ეტალონი“ და წარადგინა ნინოწმინდის მუნიციპალიტეტი ფინალურ ეტაპზე.</p>
                 </div>
-
             </div>
 
         </div>
@@ -339,7 +342,6 @@
     </div>
 
     <script>
-        // სურათების გადიდების ფუნქციები
         function openModal(imgElement) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
@@ -351,6 +353,7 @@
             document.getElementById('imageModal').style.display = "none";
         }
     </script>
+
     <!-- Contact & Socials -->
     <section id="contact" class="container gray-bg" style="text-align: center;">
         <h2>მდებარეობა და კონტაქტი</h2>
@@ -381,6 +384,7 @@
             ▶ მოუსმინეთ სიმღერას YouTube-ზე
         </a>
     </section> 
+
     <section class="container card" style="text-align: center;">
         <h3 style="color: #0088cc; margin-bottom: 10px;">🎵 სოფლის მე-2 სიმღერა</h3>
         <p style="font-size: 16px; margin-bottom: 15px;">
@@ -390,6 +394,7 @@
             ▶️ მოუსმინეთ მე-2 სიმღერას YouTube-ზე
         </a>
     </section>
+
     <!-- მხარდაჭერა (საბანკო) -->
     <section id="support" style="text-align: center; padding: 20px;">
         <h3>საიტის შექმნის მხარდაჭერა</h3>
@@ -401,6 +406,18 @@
         </div>
         <p id="copyMessage" style="color: green; font-size: 14px; margin-top: 5px; display: none;">ანგარიშის ნომერი დაკოპირდა.</p>
     </section>
+
+    <script>
+        function copyIban() {
+            const ibanText = document.getElementById('ibanText').innerText;
+            navigator.clipboard.writeText(ibanText).then(() => {
+                const msg = document.getElementById('copyMessage');
+                msg.style.display = 'block';
+                setTimeout(() => { msg.style.display = 'none'; }, 3000);
+            });
+        }
+    </script>
+
     <!-- სტუმრების წიგნი -->
     <section class="container card" style="text-align: left;">
         <h3 style="color: #0088cc; text-align: center; margin-bottom: 10px;">💬 სტუმრების წიგნი / მიმოხილვები</h3>
@@ -422,6 +439,7 @@
             </div>
         </div>
     </section>
+
     <script>
         function addGuestMessage() {
             const nameInput = document.getElementById('gb-name');
@@ -448,14 +466,16 @@
             );
         }
     </script>
+
     <!-- მხარდაჭერა (სურათების გამოგზავნა) -->
     <section class="container card" style="text-align: center; border: 2px dashed #0088cc; background-color: #f0f8ff;">
         <h3 style="color: #0088cc; margin-bottom: 10px;">📸 მხარდაჭერა</h3>
         <p style="font-size: 16px; line-height: 1.5;">
             თუ გაქვთ სოფლის ლამაზი ფოტოები, გამოგვეგზავნეთ ჩვენს Telegram-ზე: 
-            <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>:
+            <a href="https://t.me/dilifvillage" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: underline;">@dilifvillage</a>
         </p>
     </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 დილიფის სოფლის რესურსული საიტი | Dilif Village</p>
@@ -464,11 +484,13 @@
             ✨ საიტის შექმნის პროცესს მხარი დაუჭირა და დაეხმარა <strong>ოფელია კირაკოსიანი</strong>
         </p>
     </footer>
+
     <!-- ვიზიტორთა რაოდენობა -->
     <div style="text-align: center; margin: 15px 0; font-family: sans-serif;">
         <p style="margin-bottom: 5px; font-size: 0.85rem; color: #666;">👁️ ვიზიტები:</p>
         <span id="visit-count" style="background: #1B365D; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: inline-block;">0</span>
     </div>
+
     <script>
         let visits = localStorage.getItem('dilif_visits');
         if (!visits) {
@@ -479,109 +501,4 @@
         localStorage.setItem('dilif_visits', visits);
         document.getElementById('visit-count').innerText = visits;
     </script>
-    <!-- ზოგადი სკრიპტები -->
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const btn = document.getElementById('theme-btn');
-            if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                btn.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('theme-btn').textContent = '☀️';
-        }
-        function copyIban() {
-            const ibanElement = document.getElementById("ibanText").innerText;
-            navigator.clipboard.writeText(ibanElement).then(() => {
-                const msg = document.getElementById("copyMessage");
-                msg.style.display = "block";
-                setTimeout(() => {
-                    msg.style.display = "none";
-                }, 3000);
-            });
-        }
-        window.onscroll = function() {
-            const btn = document.getElementById("scrollTopBtn");
-            if (btn) {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    btn.style.display = "block";
-                } else {
-                    btn.style.display = "none";
-                }
-            }
-        };
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        window.addEventListener('DOMContentLoaded', () => {
-            for (let i = 1; i <= 2; i++) {
-                if (localStorage.getItem('dilif_poll_' + i)) {
-                    const card = document.getElementById('poll-' + i);
-                    if (card) {
-                        const options = card.querySelector('.poll-options');
-                        const thankyou = card.querySelector('.poll-thankyou');
-                        if (options) options.style.display = 'none';
-                        if (thankyou) thankyou.style.display = 'block';
-                    }
-                }
-            }
-        });
-        function answerPoll(pollNumber, option) {
-            localStorage.setItem('dilif_poll_' + pollNumber, option);
-            const card = document.getElementById('poll-' + pollNumber);
-            if (card) {
-                const options = card.querySelector('.poll-options');
-                const thankyou = card.querySelector('.poll-thankyou');
-                if (options) options.style.display = 'none';
-                if (thankyou) thankyou.style.display = 'block';
-            }
-        }
-    </script>
-<style>
-.falling-leaf {
-    position: absolute;
-    top: -50px;
-    z-index: 10;
-    user-select: none;
-    pointer-events: none;
-    animation: fallToPoll linear infinite;
-}
-@keyframes fallToPoll {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(550px) rotate(360deg);
-        opacity: 0;
-    }
-}
-</style>
-<script>
-function createLeaf() {
-    const leaf = document.createElement('div');
-    leaf.classList.add('falling-leaf');
-    leaf.innerHTML = '🍁';
-    leaf.style.left = Math.random() * window.innerWidth + 'px';
-    leaf.style.fontSize = (Math.random() * 10 + 18) + 'px';
-    leaf.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
-    
-    document.body.appendChild(leaf);
-    
-    setTimeout(() => {
-        leaf.remove();
-    }, 4500);
-}
-setInterval(createLeaf, 400);
-</script>
 </body>
-</html>
