@@ -14,175 +14,80 @@
     <link rel="apple-touch-icon" sizes="180x180" href="fav.jpg">
 </head>
 <body>
-  <!-- Ձեր կայքի մնացած կոնտենտը -->
-
-    <!-- Header & Navigation -->
-    <header>
-        <div class="logo" style="display: inline-block; vertical-align: middle; margin-right: 20px;">
-            <img src="favicon.png" alt="Dilif Logo" style="height: 45px; width: auto; display: block;">
+<!-- Header & Navigation -->
+    <header style="position: sticky; top: 0; z-index: 1000; background-color: #1b365d; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        
+        <!-- Լոգո, որին սեղմելիս բացվելու է մենյուն -->
+        <div class="logo-menu-btn" onclick="toggleNavMenu()" style="display: flex; align-items: center; cursor: pointer;">
+            <img src="favicon.png" alt="Dilif Logo" style="height: 45px; width: auto; display: block; background-color: white; padding: 4px 8px; border-radius: 6px;">
+            <span style="color: white; margin-left: 10px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                Մենյու <i id="menu-arrow" class="fas fa-chevron-down" style="transition: transform 0.3s ease;"></i>
+            </span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#about">Մեր Մասին</a></li>
-                <li><a href="#sightseeing">Տեսարժան Վայրեր</a></li>
-                <li><a href="barbar.html">Բարբառ</a></li>
-                <li><a href="gallery.html">Լուսանկարներ</a></li>
-                <li><a href="videos.html">Տեսանյութեր</a></li>
-                <li><a href="#contact">Կապ</a></li>
-            </ul>
-        </nav>
-    <!-- Language Switcher & Auth -->
+
+        <!-- Աջ հատված՝ Լեզու, Մութ ռեժիմ, Մուտք -->
         <div class="lang-switch" style="display: flex; align-items: center; gap: 8px;">
-            <button class="active">
+            <button class="active" style="background: transparent; border: 1px solid white; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer;">
                 <img src="https://flagcdn.com/w20/am.png" alt="Armenia" style="vertical-align: middle;">
             </button>
-            <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()">🌙</button>
+            <button class="dark-mode-btn" id="theme-btn" onclick="toggleDarkMode()" style="background: transparent; border: 2px solid white; color: white; padding: 3px 8px; border-radius: 20px; cursor: pointer;">🌙</button>
             
-            <!-- Այստեղ փոխվել է կոճակի տեղը, որպեսզի հայտնվի օգտանունը կամ դուրս գալու կոճակը -->
-            <div id="userAuthContainer" style="display: inline-block; margin-left: 10px;">
-                <button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>
+            <div id="userAuthContainer" style="display: inline-block; margin-left: 5px;">
             </div>
         </div>
     </header>
 
-   <!-- Մուտք / Գրանցման պատուհան -->
-    <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-        <div style="background: white; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; text-align: center;">
-            <span onclick="closeAuthModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888;">&times;</span>
-            <h3 id="modalTitle" style="margin-bottom: 20px; color: #333;">Մուտք գործել</h3>
-            
-            <!-- Նոր դաշտ Username-ի համար, որը երևում է միայն գրանցման ժամանակ -->
-            <input type="text" id="authUsername" placeholder="Օգտանուն (Username)" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; display: none;">
-            
-            <input type="email" id="authEmail" placeholder="Էլ. հասցե" style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-            <input type="password" id="authPassword" placeholder="Գաղտնաբառ" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-            <button id="authSubmitBtn" style="width: 100%; background: #2575fc; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>
-            <p style="font-size: 13px; color: #666; cursor: pointer; margin-top: 15px;" onclick="toggleAuthMode()">Չունե՞ք հաշիվ: Գրանցվեք</p>
-        </div>
+  <!-- Բացվող Մենյուի վահանակը (Քառակուսի շրջանակներով) -->
+    <div id="dropdownNavMenu" style="max-height: 0; overflow: hidden; background-color: rgba(21, 44, 77, 0.95); backdrop-filter: blur(10px); transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 4px 6px rgba(0,0,0,0.2);">
+        <nav style="max-width: 500px; margin: 0 auto; padding: 20px 15px;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                <li>
+                    <a href="#about" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Մեր Մասին
+                    </a>
+                </li>
+                <li>
+                    <a href="#sightseeing" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Տեսարժան Վայրեր
+                    </a>
+                </li>
+                <li>
+                    <a href="barbar.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Բարբառ
+                    </a>
+                </li>
+                <li>
+                    <a href="gallery.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Լուսանկարներ
+                    </a>
+                </li>
+                <li>
+                    <a href="videos.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Տեսանյութեր
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                        Կապ
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-
-    <!-- Firebase SDK-ներ -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-   <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyC_K1S7HNliPo9GvQt2IB7m74ApxGwCDHg",
-            authDomain: "dilif-village.firebaseapp.com",
-            projectId: "dilif-village",
-            storageBucket: "dilif-village.appspot.com",
-            messagingSenderId: "1011262538335",
-            appId: "1:1011262538335:web:fa5b8f6b0653d1f192d1ea"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        function openAuthModal() {
-            document.getElementById('authModal').style.display = 'flex';
-        }
-        function closeAuthModal() {
-            document.getElementById('authModal').style.display = 'none';
-        }
-
-        let isLogin = true;
-        function toggleAuthMode() {
-            isLogin = !isLogin;
-            const usernameInput = document.getElementById('authUsername');
-            document.getElementById('modalTitle').innerText = isLogin ? 'Մուտք գործել' : 'Գրանցվել';
-            document.getElementById('authSubmitBtn').innerText = isLogin ? 'Մուտք' : 'Գրանցվել';
-            usernameInput.style.display = isLogin ? 'none' : 'block';
-        }
-
-        // Հետևում ենք օգտատիրոջ մուտքի կարգավիճակին
-        auth.onAuthStateChanged((user) => {
-            const container = document.getElementById('userAuthContainer');
-            if (user) {
-                // Եթե մուտք է գործել, վերցնում ենք անունը (Firestore-ից կամ Profile-ից)
-                db.collection('users').doc(user.uid).get().then((doc) => {
-                    let username = "Օգտատեր";
-                    if (doc.exists && doc.data().username) {
-                        username = doc.data().username;
-                    } else if (user.displayName) {
-                        username = user.displayName;
-                    } else {
-                        username = user.email.split('@')[0];
-                    }
-
-                    container.innerHTML = `
-                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${username}</span>
-                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">Դուրս գալ</button>
-                    `;
-                }).catch(() => {
-                    container.innerHTML = `
-                        <span style="font-weight: bold; color: #2575fc; margin-right: 8px;">👤 ${user.email.split('@')[0]}</span>
-                        <button onclick="logoutUser()" style="background: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">Դուրս գալ</button>
-                    `;
-                });
-            } else {
-                container.innerHTML = `<button onclick="openAuthModal()" id="authActionBtn" style="background: #2575fc; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Մուտք</button>`;
-            }
-        });
-
-        function logoutUser() {
-            auth.signOut().then(() => {
-                alert('Դուք դուրս եք եկել հաշվից');
-            });
-        }
-
-        document.getElementById('authSubmitBtn').addEventListener('click', function() {
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-            const username = document.getElementById('authUsername').value;
-
-            if (!email || !password || (!isLogin && !username)) {
-                alert('Խնդրում ենք լրացնել բոլոր դաշտերը');
-                return;
-            }
-
-            if (isLogin) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .then(() => {
-                        alert('Հաջողությամբ մուտք գործեցիք!');
-                        closeAuthModal();
-                    })
-                    .catch((error) => {
-                        alert('Սխալ՝ ' + error.message);
-                    });
-            } else {
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        const user = userCredential.user;
-                        // Պահպանում ենք օգտանունը Firestore-ում
-                        return db.collection('users').doc(user.uid).set({
-                            username: username,
-                            email: email
-                        });
-                    })
-                    .then(() => {
-                        alert('Հաշիվը հաջողությամբ ստեղծվեց!');
-                        closeAuthModal();
-                    })
-                    .catch((error) => {
-                        alert('Սխալ՝ ' + error.message);
-                    });
-            }
-        });
-    </script>
-
-<!-- Hero Banner -->
-<section class="hero" style="position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; background-image: url('hero-bg.jpg'); background-size: cover; background-position: center;">
+	
+<!-- Hero Section (Bari Galust) -->
+<section class="hero" id="home" style="position: relative; width: 100%; height: 75vh; background: url('dilif20.jpg') no-repeat center center / cover; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box;">
     
-    <!-- Մթնեցնող շերտ, որպեսզի տեքստը հստակ երևա -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.45); z-index: 2;"></div>
+    <!-- Dark overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
 
-    <!-- Գլխավոր տեքստեր -->
-    <div style="position: relative; z-index: 3; color: white;">
-        <h1 style="font-size: 48px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Բարի Գալուստ Դիլիֆ Գյուղ</h1>
-        <p style="font-size: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Սամցխե-Ջավախքի | Նինոծմինդայի շրջան</p>
+    <!-- Main Texts -->
+    <div style="position: relative; z-index: 2; color: white; max-width: 800px;">
+        <h1 style="font-size: 48px; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); font-weight: bold;">Բարի Գալուստ Դիլիֆ Գյուղ</h1>
+        <p style="font-size: 22px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); margin: 0;">Սամցխե-Ջավախքի | Նինոծմինդայի շրջան</p>
     </div>
-</section>
 
+</section>
     <!-- Եղանակի Վիջեթ -->
     <section id="weather-section" style="padding: 20px; max-width: 1000px; margin: 30px auto;">
         <h3 style="text-align: center; color: #1b365d; margin-bottom: 20px; font-size: 24px;">🌦️ Եղանակը Դիլիֆում այս շաբաթ</h3>
@@ -616,6 +521,22 @@ function createLeaf() {
 }
 
 setInterval(createLeaf, 400);
+</script>
+
+<script>
+    function toggleNavMenu() {
+        const menu = document.getElementById('dropdownNavMenu');
+        const arrow = document.getElementById('menu-arrow');
+        
+        if (menu.style.maxHeight && menu.style.maxHeight !== "0px") {
+            menu.style.maxHeight = "0px";
+            if (arrow) arrow.style.transform = "rotate(0deg)";
+        } else {
+            menu.style.maxHeight = menu.scrollHeight + "px";
+            if (arrow) arrow.style.transform = "rotate(180deg)";
+        }
+    }
+</script>
 
 <script>
     window.addEventListener('load', function() {
@@ -627,6 +548,6 @@ setInterval(createLeaf, 400);
             }
         }, 3500);
     });
-    </script>
+</script>
 </body>
 </html>
