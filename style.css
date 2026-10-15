@@ -635,3 +635,40 @@ box-sizing: border-box;
         color: #000; /* Ֆոնը սպիտակելիս տառը դառնում է սև՝ հստակ երևալու համար */
     }
 }
+/* Music Control Button Style */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(21, 44, 77, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    background: rgba(37, 117, 252, 0.8);
+    border-color: #2575fc;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37, 117, 252, 0.4);
+}
+
+.music-btn i {
+    font-size: 16px;
+    color: #60a5fa;
+}
+
+.music-btn.playing i {
+    color: #4ade80; /* Կանաչ գույն, երբ նվագում է */
+}
