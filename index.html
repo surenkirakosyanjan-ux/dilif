@@ -38,7 +38,7 @@
     </header>
 
   <!-- Բացվող Մենյուի վահանակը (Քառակուսի շրջանակներով) -->
-    <div id="dropdownNavMenu" style="max-height: 0; overflow: hidden; background-color: rgba(21, 44, 77, 0.95); backdrop-filter: blur(10px); transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 4px 6px rgba(0,0,0,0.2);">
+    <div id="dropdownNavMenu" style="max-height: 0; overflow: hidden; background-color: rgba(50, 102, 175, 0.95)))); backdrop-filter: blur(10px); transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 4px 6px rgba(0,0,0,0.2);">
         <nav style="max-width: 500px; margin: 0 auto; padding: 20px 15px;">
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
                 <li>
@@ -587,4 +587,10 @@ setInterval(createRaindrop, 40);
     <i id="music-icon" class="fas fa-volume-mute"></i>
     <span id="music-text">Երաժշտություն</span>
 </button>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker Registered Successfully'));
+  }
+</script>
 </html>

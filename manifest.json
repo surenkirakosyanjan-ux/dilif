@@ -1,0 +1,20 @@
+{
+  "name": "Dilif Online",
+  "short_name": "Dilif",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#152c4d",
+  "theme_color": "#152c4d",
+  "icons": [
+    {
+      "src": "fav.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "fav.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
