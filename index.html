@@ -21,8 +21,47 @@
     });
   });
 </script>
-</head>
 <body>
+<!-- PWA Տեղադրման կոճակ / Բաններ -->
+  <div id="pwa-install-banner" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1e293b; color: #ffffff; padding: 14px 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 9999; align-items: center; gap: 12px; font-family: sans-serif; width: 90%; max-width: 400px; border: 1px solid #334155;">
+    <span style="font-size: 14px; flex-grow: 1;">📲 Տեղադրեք <b>Dilif Online</b>-ը հեռախոսում</span>
+    <button id="pwa-install-btn" style="background: #2563eb; color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px;">Տեղադրել</button>
+    <button id="pwa-close-btn" style="background: transparent; color: #94a3b8; border: none; font-size: 18px; cursor: pointer; padding: 0 4px;">✕</button>
+  </div>
+
+  <script>
+    let deferredPrompt;
+    const installBanner = document.getElementById('pwa-install-banner');
+    const installBtn = document.getElementById('pwa-install-btn');
+    const closeBtn = document.getElementById('pwa-close-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = 'flex';
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('Օգտատերը տեղադրեց PWA-ն');
+        }
+        deferredPrompt = null;
+        installBanner.style.display = 'none';
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      installBanner.style.display = 'none';
+    });
+
+    window.addEventListener('appinstalled', () => {
+      installBanner.style.display = 'none';
+      deferredPrompt = null;
+    });
+  </script>
 <!-- Header & Navigation -->
     <header style="position: sticky; top: 0; z-index: 1000; background-color: #234e8a; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
         
@@ -46,37 +85,37 @@
         </div>
     </header>
 
-  <!-- Բացվող Մենյուի վահանակը (Քառակուսի շրջանակներով) -->
-    <div id="dropdownNavMenu" style="max-height: 0; overflow: hidden; background-color: rgba(50, 102, 175, 0.95)))); backdrop-filter: blur(10px); transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 4px 6px rgba(0,0,0,0.2);">
+  <!-- Բացվող Մենյուի վահանակը (Liquid Glass ոճով) -->
+    <div id="dropdownNavMenu" style="max-height: 0; overflow: hidden; background: rgba(30, 58, 138, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 10px 25px rgba(0,0,0,0.3);">
         <nav style="max-width: 500px; margin: 0 auto; padding: 20px 15px;">
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
                 <li>
-                    <a href="#about" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="#about" onclick="toggleNavMenu()" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Մեր Մասին
                     </a>
                 </li>
                 <li>
-                    <a href="#sightseeing" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="#sightseeing" onclick="toggleNavMenu()" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Տեսարժան Վայրեր
                     </a>
                 </li>
                 <li>
-                    <a href="barbar.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="barbar.html" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Բարբառ
                     </a>
                 </li>
                 <li>
-                    <a href="gallery.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="gallery.html" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Լուսանկարներ
                     </a>
                 </li>
                 <li>
-                    <a href="videos.html" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="videos.html" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Տեսանյութեր
                     </a>
                 </li>
                 <li>
-                    <a href="#contact" onclick="toggleNavMenu()" style="display: block; padding: 12px; color: white; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.borderColor='#3182ce'; this.style.transform='translateY(-2px) scale(1.02)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0) scale(1)';">
+                    <a href="#contact" onclick="toggleNavMenu()" style="display: block; padding: 14px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03)); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);" onmouseover="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08))'; this.style.borderColor='rgba(255, 255, 255, 0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))'; this.style.borderColor='rgba(255, 255, 255, 0.25)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4)';">
                         Կապ
                     </a>
                 </li>
